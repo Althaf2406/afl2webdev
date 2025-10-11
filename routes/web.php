@@ -1,11 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PageController::class, 'index']);
 
-Route::get('/index', function () {
-    return view('index');
-});
+Route::get('/corporate-governance', [PageController::class, 'corporate_governance']);
+
+Route::get('/mining-assets', [PageController::class, 'mining_assets']);
+
+Route::get('/project-data', [PageController::class, 'project_data']);
+
+Route::get('/investor-relation', [PageController::class, 'investor_relation']);

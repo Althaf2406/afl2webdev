@@ -15,15 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->text('short_description');
-            $table->text('description');    
+            $table->text('short_description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('image')->nullable();
             $table->json('specification')->nullable();
             $table->boolean('availability')->default(true);
-            $table->decimal('price_per_m3', 15, 2);
-            $table->string('unit')->default('m3');
-            $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
-            $table->timestamps();
+            $table->decimal('price_per_m3', 15, 2)->default(0);
+            $table->string('unit', ['m3','ton'] )->default('m3');
+            $table->enum('status', ['draft', 'published'])->default('draft');
         });
     }
 

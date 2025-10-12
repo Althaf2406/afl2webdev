@@ -3,7 +3,7 @@
 
 @section('content')
     <!-- Section Product -->
-<section id="our-product" class="py-5" style="scroll-margin-top: 100px; background-color: #000;">
+    <section id="our-product" class="py-5" style="scroll-margin-top: 100px; background-color: #000;">
     <div class="container my-5">
 
         <!-- Title -->

@@ -247,6 +247,37 @@
                 gap: 1.5rem;
             }
         }
+
+        /* --- End Nav bar --- */
+
+        /* --- Content --- */
+        /* --- About Us --- */
+
+        .highlight {
+            display: inline-block;
+            background-color: #e31e24;
+            /* merah terang seperti di gambar */
+            color: white;
+            padding: 10px 25px;
+            margin-top: 10px;
+            font-weight: 900;
+            font-size: 64px;
+            letter-spacing: 2px;
+        }
+
+            .main-text {
+      font-size: 64px;
+      font-weight: 900;
+      color: white;
+      text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+      letter-spacing: 2px;
+    }
+
+
+
+
+
+    
     </style>
 
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -257,20 +288,6 @@
                 <a href="#" class="lang-link">EN</a>
                 <span class="mx-1">|</span>
                 <a href="#" class="lang-link">ID</a>
-            </div>
-
-            <!-- Search Bar -->
-            <div class="search-container position-relative me-3">
-                <input type="text" class="search-box" placeholder="Search">
-                <button class="search-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
-                        class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397
-                    1.398l3.85 3.85a1 1 0 0 0
-                    1.415-1.415l-3.85-3.85zm-5.242.656a5
-                    5 0 1 1 0-10 5 5 0 0 1 0 10z" />
-                    </svg>
-                </button>
             </div>
 
             <!-- Contact Button -->
@@ -287,18 +304,17 @@
             <div class="collapse navbar-collapse justify-content-center" id="mainNav">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="/index" id="aboutDropdown">
                             About Us
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="aboutDropdown">
-                            <li><a class="dropdown-item" href="#">Company Overview</a></li>
-                            <li><a class="dropdown-item" href="#">Our History</a></li>
-                            <li><a class="dropdown-item" href="#">Leadership</a></li>
-                        </ul>
+                        {{-- <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="aboutDropdown">
+                            <li><a class="dropdown-item" href="/companyoverview">Company Overview</a></li>
+                            <li><a class="dropdown-item" href="/our_history">Our History</a></li>
+                            <li><a class="dropdown-item" href="/leadership">Leadership</a></li>
+                        </ul> --}}
                     </li>
 
-                    <li class="nav-item dropdown">
+                    {{-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="corpDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Corporate Governance
@@ -308,20 +324,19 @@
                             <li><a class="dropdown-item" href="#">Ethics & Compliance</a></li>
                             <li><a class="dropdown-item" href="#">Transparency Report</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="miningDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Mining Assets
+                        <a class="nav-link dropdown-toggle" href="/product" id="miningDropdown" role="button">
+                            Our Product
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="miningDropdown">
+                        {{-- <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="miningDropdown">
                             <li><a class="dropdown-item" href="/product">Our Product</a></li>
                             <li><a class="dropdown-item" href="#">Production Data</a></li>
                             <li><a class="dropdown-item" href="#">Logistics</a></li>
-                        </ul>
+                        </ul> --}}
                     </li>
-
+                    {{-- 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="projectDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -332,10 +347,10 @@
                             <li><a class="dropdown-item" href="#">Completed Projects</a></li>
                             <li><a class="dropdown-item" href="#">Future Plans</a></li>
                         </ul>
-                    </li>
-
+                    </li> --}}
+                    {{-- 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="investorDropdown" role="button"
+                        <a class="nav-link dropdown-toggle" href="" id="investorDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Investor Relation
                         </a>
@@ -344,7 +359,7 @@
                             <li><a class="dropdown-item" href="#">Annual Statements</a></li>
                             <li><a class="dropdown-item" href="#">Contact Investor Team</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>

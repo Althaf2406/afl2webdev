@@ -14,6 +14,7 @@
             margin: 0;
             padding: 6rem;
         }
+
         /* --- Top bar --- */
         .top-bar {
             width: 100%;
@@ -24,7 +25,6 @@
             top: 0;
             left: 0;
             height: 40px;
-            z-index: 1100;
             padding-right: 2rem;
             padding-top: 3rem;
         }
@@ -92,6 +92,12 @@
             border: none;
             padding-top: 5rem;
             padding-bottom: 1rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1050;
+
+
         }
 
         .navbar-nav {
@@ -242,9 +248,7 @@
             }
         }
     </style>
-</head>
 
-<body>
     <nav class="navbar navbar-expand-lg fixed-top">
         <!-- TOP BAR -->
         <div class="top-bar d-flex align-items-center justify-content-end px-4">
@@ -312,7 +316,7 @@
                             Mining Assets
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="miningDropdown">
-                            <li><a class="dropdown-item" href="#">Active Sites</a></li>
+                            <li><a class="dropdown-item" href="/product">Our Product</a></li>
                             <li><a class="dropdown-item" href="#">Production Data</a></li>
                             <li><a class="dropdown-item" href="#">Logistics</a></li>
                         </ul>
@@ -345,6 +349,10 @@
             </div>
         </div>
     </nav>
+</head>
+
+<body>
+
 
     <div class="container-fluid" style="margin-top:120px;">
         @yield('content')

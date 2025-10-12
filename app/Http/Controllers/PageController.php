@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function home(){
+    public function index(){
         return view('index');
     }
     public function corporate_governance(){
@@ -20,6 +20,6 @@ class PageController extends Controller
     }
     public function project_data(){
         return view('project_data');
-    }   
+    }  
 
 }

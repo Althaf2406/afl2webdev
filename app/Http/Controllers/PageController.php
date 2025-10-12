@@ -24,6 +24,9 @@ class PageController extends Controller
     }
     public function project_data(){
         return view('project_data');
-    }   
+    }  
+    public function company_overview(){
+        return view('company_overview');
+    }
 
 }

@@ -350,7 +350,9 @@
     <div class="container-fluid" style="margin-top:120px;">
         @yield('content')
     </div>
-
+    <br>
+    <br>
+    <br>
     <footer class="w-100">
         <div class="m-8 d-flex justify-content-between gap-2">
             <div class="m-8 d-flex-col">

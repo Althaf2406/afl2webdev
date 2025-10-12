@@ -5,7 +5,7 @@ use App\Http\Controllers\PageController;
 
 Route::get('/', [PageController::class, 'index']);
 
-Route::get('/corporate-governance', [PageController::class, 'corporate_governance']);
+Route::get('/galeri', [PageController::class, 'galeri']);
 
 Route::get('/mining-assets', [PageController::class, 'mining_assets']);
 

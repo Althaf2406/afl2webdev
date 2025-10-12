@@ -2,21 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Product;
+use App\Models\Galeri;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ProductSeeder extends Seeder
+class GaleriSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Product::create([
-            'nama_produk' => 'Pasir',
-            'harga' => 10000,
-            'gambar' => '',
-        ]);
+        \App\Models\Galeri::factory(100)->create();
     }
 }

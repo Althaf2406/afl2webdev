@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Tambang Pasir Jambi')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/index.css') }}" rel="stylesheet">
 
     <style>
         body {
@@ -350,6 +351,58 @@
         @yield('content')
     </div>
 
+    <footer class="w-100">
+        <div class="m-8 d-flex justify-content-between gap-2">
+            <div class="m-8 d-flex-col">
+                <h4>About us</h4>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur 
+                    adipiscing elit. Pellentesque eget volutpat 
+                    lacus. Aenean scelerisque nisl in blandit 
+                    lacinia. Aenean varius pulvinar lectus eu 
+                    condimentum. Phasellus posuere aliquam 
+                    vehicula. Phasellus ornare purus et 
+                    pretium blandit. Pellentesque mauris dui, 
+                    efficitur ac libero eget, tincidunt facilisis mauris. 
+                    In tristique elementum mi, in venenatis orci. Phasellus 
+                    ultrices augue urna, nec euismod mauris ultricies nec.
+                </p>
+            </div>
+            <div class="m-8 d-flex-col">
+                <h4>Adress</h4>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur 
+                    adipiscing elit. Pellentesque eget volutpat 
+                    lacus. Aenean scelerisque nisl in blandit 
+                    lacinia. Aenean varius pulvinar lectus eu 
+                    condimentum. Phasellus posuere aliquam 
+                    vehicula. Phasellus ornare purus et 
+                    pretium blandit. Pellentesque mauris dui, 
+                    efficitur ac libero eget, tincidunt facilisis mauris. 
+                    In tristique elementum mi, in venenatis orci. Phasellus 
+                    ultrices augue urna, nec euismod mauris ultricies nec.
+                </p>
+            </div>
+            <div class="m-8 d-flex-col">
+                <h4>Contact info</h4>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur 
+                    adipiscing elit. Pellentesque eget volutpat 
+                    lacus. Aenean scelerisque nisl in blandit 
+                    lacinia. Aenean varius pulvinar lectus eu 
+                    condimentum. Phasellus posuere aliquam 
+                    vehicula. Phasellus ornare purus et 
+                    pretium blandit. Pellentesque mauris dui, 
+                    efficitur ac libero eget, tincidunt facilisis mauris. 
+                    In tristique elementum mi, in venenatis orci. Phasellus 
+                    ultrices augue urna, nec euismod mauris ultricies nec.
+                </p>
+            </div>
+        </div>
+        <div class="border-top border-secondary">
+            <p class="text-center p-3">All right reserved</p>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

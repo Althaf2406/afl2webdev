@@ -257,7 +257,7 @@
 
         .highlight {
             display: inline-block;
-            background-color: #e31e24;
+            background-color:#f39c12;
             /* merah terang seperti di gambar */
             color: white;
             padding: 10px 25px;

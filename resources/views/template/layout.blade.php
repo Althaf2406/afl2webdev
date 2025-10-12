@@ -12,7 +12,7 @@
             background-color: #000;
             color: #fff;
             margin: 0;
-            padding: 6rem;
+            padding: 0;
         }
 
         /* --- Top bar --- */
@@ -90,9 +90,8 @@
         .navbar {
             background: transparent !important;
             border: none;
-            padding-top: 5rem;
-            padding-bottom: 1rem;
-            position: fixed;
+            padding-top: 3rem;
+            position: relative;
             top: 0;
             width: 100%;
             z-index: 1050;
@@ -251,6 +250,9 @@
         /* --- End Nav bar --- */
 
         /* --- Content --- */
+
+
+
         /* --- About Us --- */
 
         .highlight {
@@ -277,7 +279,7 @@
 
 
 
-    
+
     </style>
 
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -336,18 +338,19 @@
                             <li><a class="dropdown-item" href="#">Logistics</a></li>
                         </ul> --}}
                     </li>
-                    {{-- 
+                    
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="projectDropdown" role="button"
+                        <a class="nav-link dropdown-toggle" href="/galery" id="projectDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Project Data
+                            Galery
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="projectDropdown">
+                        {{-- <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="projectDropdown">
                             <li><a class="dropdown-item" href="#">Ongoing Projects</a></li>
                             <li><a class="dropdown-item" href="#">Completed Projects</a></li>
                             <li><a class="dropdown-item" href="#">Future Plans</a></li>
-                        </ul>
-                    </li> --}}
+                        </ul> --}}
+                    </li>
+
                     {{-- 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="" id="investorDropdown" role="button"
@@ -369,7 +372,7 @@
 <body>
 
 
-    <div class="container-fluid" style="margin-top:120px;">
+    <div class="container-fluid" style="margin-top:20px;">
         @yield('content')
     </div>
 

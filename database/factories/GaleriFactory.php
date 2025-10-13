@@ -21,7 +21,7 @@ class GaleriFactory extends Factory
         return [
             'judul' => fake()->sentence(),
             'deskripsi' => fake()->paragraph(),
-            'gambar' => 'image/tambang_pasir.jpeg'
+            'gambar' => 'image/tambang_pasir.jpeg',
         ];
     }
 }

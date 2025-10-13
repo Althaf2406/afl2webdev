@@ -123,6 +123,8 @@
 
 <!-- Company Partner -->
     <section id="partnerCarousel" class="carousel slide bg-white" data-bs-ride="carousel">
+        <h2 class="text-center text-black">Our Partner</h2>
+        <br>
         <div class="carousel-inner">
             @foreach ($partnerList->chunk(3) as $index => $chunk)
                 <div class="carousel-item @if ($index == 0) active @endif" data-bs-interval="3000">

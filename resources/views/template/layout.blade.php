@@ -9,7 +9,7 @@
     <link href="{{ asset('css/index.css') }}" rel="stylesheet">
 
     <style>
-        body {
+body {
             background-color: #000;
             color: #fff;
             margin: 0;
@@ -279,23 +279,11 @@
       text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
       letter-spacing: 2px;
     }
-
-
-
-
-
-
     </style>
 
     <nav class="navbar navbar-expand-lg fixed-top">
         <!-- TOP BAR -->
         <div class="top-bar d-flex align-items-center justify-content-end px-4">
-            <!-- Language Switcher -->
-            <div class="lang-switch d-flex align-items-center me-3">
-                <a href="#" class="lang-link">EN</a>
-                <span class="mx-1">|</span>
-                <a href="#" class="lang-link">ID</a>
-            </div>
 
             <!-- Contact Button -->
             <button class="contact-btn">CONTACT US</button>

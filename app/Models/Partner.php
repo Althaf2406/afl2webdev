@@ -12,6 +12,6 @@ class Partner extends Model
         'nama',
         'gambar',
     ];
-    
+    public $timestamps = false;
 
 }

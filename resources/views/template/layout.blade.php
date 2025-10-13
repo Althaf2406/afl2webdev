@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Tambang Pasir Jambi')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/index.css') }}" rel="stylesheet">
 
     <style>
         body {
@@ -192,11 +193,6 @@
             border-color: #fff;
         }
 
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-        }
-
-
         .lang-switch a {
             color: white;
             text-decoration: none;
@@ -207,28 +203,6 @@
         .lang-switch span {
             color: white;
             margin-right: 8px;
-        }
-
-        .search-box {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(6px);
-            border-radius: 8px;
-            border: none;
-            color: white;
-            padding-left: 15px;
-            width: 220px;
-            height: 40px;
-        }
-
-        .search-box::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .search-btn {
-            background: transparent;
-            border: none;
-            color: white;
-            margin-left: -35px;
         }
 
         .contact-btn {
@@ -247,6 +221,10 @@
             }
         }
 
+        footer {
+            padding: 100px;
+        }
+
         /* --- End Nav bar --- */
 
         /* --- Content --- */
@@ -257,7 +235,7 @@
 
         .highlight {
             display: inline-block;
-            background-color:#f39c12;
+            background-color: #f39c12;
             /* merah terang seperti di gambar */
             color: white;
             padding: 10px 25px;
@@ -267,30 +245,18 @@
             letter-spacing: 2px;
         }
 
-            .main-text {
-      font-size: 64px;
-      font-weight: 900;
-      color: white;
-      text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
-      letter-spacing: 2px;
-    }
-
-
-
-
-
-
+        .main-text {
+            font-size: 64px;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+            letter-spacing: 2px;
+        }
     </style>
 
     <nav class="navbar navbar-expand-lg fixed-top">
         <!-- TOP BAR -->
         <div class="top-bar d-flex align-items-center justify-content-end px-4">
-            <!-- Language Switcher -->
-            <div class="lang-switch d-flex align-items-center me-3">
-                <a href="#" class="lang-link">EN</a>
-                <span class="mx-1">|</span>
-                <a href="#" class="lang-link">ID</a>
-            </div>
 
             <!-- Contact Button -->
             <button class="contact-btn">CONTACT US</button>
@@ -306,63 +272,21 @@
             <div class="collapse navbar-collapse justify-content-center" id="mainNav">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/index" id="aboutDropdown">
+                        <a class="nav-link" href="/index" id="aboutDropdown">
                             About Us
                         </a>
-                        {{-- <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="aboutDropdown">
-                            <li><a class="dropdown-item" href="/companyoverview">Company Overview</a></li>
-                            <li><a class="dropdown-item" href="/our_history">Our History</a></li>
-                            <li><a class="dropdown-item" href="/leadership">Leadership</a></li>
-                        </ul> --}}
                     </li>
 
-                    {{-- <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="corpDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Corporate Governance
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="corpDropdown">
-                            <li><a class="dropdown-item" href="#">Policies</a></li>
-                            <li><a class="dropdown-item" href="#">Ethics & Compliance</a></li>
-                            <li><a class="dropdown-item" href="#">Transparency Report</a></li>
-                        </ul>
-                    </li> --}}
-
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/product" id="miningDropdown" role="button">
+                        <a class="nav-link" href="/product" id="miningDropdown" role="button">
                             Our Product
                         </a>
-                        {{-- <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="miningDropdown">
-                            <li><a class="dropdown-item" href="/product">Our Product</a></li>
-                            <li><a class="dropdown-item" href="#">Production Data</a></li>
-                            <li><a class="dropdown-item" href="#">Logistics</a></li>
-                        </ul> --}}
-                    </li>
-                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/galery" id="projectDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Galery
-                        </a>
-                        {{-- <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="projectDropdown">
-                            <li><a class="dropdown-item" href="#">Ongoing Projects</a></li>
-                            <li><a class="dropdown-item" href="#">Completed Projects</a></li>
-                            <li><a class="dropdown-item" href="#">Future Plans</a></li>
-                        </ul> --}}
                     </li>
 
-                    {{-- 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="" id="investorDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Investor Relation
+                        <a class="nav-link" href="/gallery" id="projectDropdown" role="button">
+                            Galery
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="investorDropdown">
-                            <li><a class="dropdown-item" href="#">Financial Reports</a></li>
-                            <li><a class="dropdown-item" href="#">Annual Statements</a></li>
-                            <li><a class="dropdown-item" href="#">Contact Investor Team</a></li>
-                        </ul>
-                    </li> --}}
                 </ul>
             </div>
         </div>
@@ -375,7 +299,34 @@
     <div class="container-fluid" style="margin-top:20px;">
         @yield('content')
     </div>
-
+    <footer class="w-100" style="background-image: url(image/footer-bg.png); background-position: center;">
+        <div class="d-flex justify-content-between gap-2 row">
+            <div class="m-8 d-flex-col col">
+                <h4>About us</h4>
+                <p>
+                    Tambang Pasir Jambi adalah perusahaan yang bergerak di bidang penambangan pasir berkualitas tinggi
+                    di wilayah Jambi.
+                    Dengan pengalaman bertahun-tahun, kami berkomitmen untuk menyediakan produk pasir yang memenuhi
+                    standar industri dan kebutuhan pelanggan kami.
+                </p>
+            </div>
+            <div class="m-8 d-flex-col col">
+                <h4>Adress</h4>
+                <a href="https://maps.app.goo.gl/qCAGJ2ks5MVr1BDr5">Jl. Lintas Timur, Desa Sungai Gelam,
+                    Kec. Sungai Gelam, Kab. Muaro Jambi,
+                    Jambi 36361, Indonesia</a>
+            </div>
+            <div class="m-8 d-flex-col col">
+                <h4>Contact info</h4>
+                <a href="wa.me/6281357719992">81357719992</a>
+                <br>
+                <a href="mailto:malthafhilmi@student.ciputra.ac.id">malthafhilmi@student.ciputra.ac.id</a>
+            </div>
+        </div>
+        <div class="border-top border-secondary">
+            <p class="text-center p-3">All right reserved</p>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

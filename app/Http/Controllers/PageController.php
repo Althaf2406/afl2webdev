@@ -2,27 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Galeri;
 use Illuminate\Http\Request;
+use App\Models\Partner;
 
 class PageController extends Controller
 {
     public function index(){
-        return view('index');
+        $partnerList = Partner::all();
+        return view('index', compact('partnerList'));
     }
-    public function corporate_governance(){
-        return view('corporate_governance');
-    }
-    public function investor_relation(){
-        return view('investor_relation');
-    }
-    public function mining_assets(){
-        return view('mining_assets');
-    }
-    public function project_data(){
-        return view('project_data');
-    }  
-    public function company_overview(){
-        return view('company_overview');
+    public function gallery(){
+        $galeriList = Galeri::paginate(6);
+        return view('gallery', compact('galeriList'));
     }
 
 }

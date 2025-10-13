@@ -23,7 +23,11 @@ class ProductFactory extends Factory
             'slug' => Str::slug($name),
             'short_description' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
-            'image' => $this->faker->imageUrl(640, 480, 'products', true),
+            'image' => $this->faker->randomElement([
+                'image/kfc_logo.webp',
+                'image/mcd_logo.png',
+                'image/pertamina_logo.webp',
+            ]),
             'specification' => json_encode([
                 'Ukuran Butir' => $this->faker->randomElement(['0.1 - 2 mm', '0.2 - 5 mm', '0.5 - 4 mm']),
                 'Warna' => $this->faker->randomElement(['Putih', 'Coklat', 'Abu-abu']),

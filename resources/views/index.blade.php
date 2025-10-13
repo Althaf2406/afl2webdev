@@ -85,7 +85,8 @@
         </div>
     </section>
 
-
+    <section class="bg-white py-5">
+        <!-- Company Data -->
     <section id="companyStats" class="py-5" style="background-color: white; color: black;">
         <div class="container text-center">
 
@@ -108,7 +109,20 @@
                 </div>
 
 
-    <section id="partnerCarousel" class="carousel slide" data-bs-ride="carousel">
+    
+
+
+                <!-- Counter 3 -->
+                <div class="col-12 col-md-3">
+                    <h1 class="counter fw-bold text-warning" data-target="115" style="font-size: 64px;">0</h1>
+                    <h5 class="text-uppercase" style="color: black;">Volume Produksi</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Company Partner -->
+    <section id="partnerCarousel" class="carousel slide bg-white" data-bs-ride="carousel">
         <div class="carousel-inner">
             @foreach ($partnerList->chunk(3) as $index => $chunk)
                 <div class="carousel-item @if ($index == 0) active @endif" data-bs-interval="3000">
@@ -131,25 +145,17 @@
             @endforeach
         </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#partnerCarousel" data-bs-slide="prev">
+        <button class="carousel-control-prev " type="button" style="filter: invert(1);" data-bs-target="#partnerCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#partnerCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <button class="carousel-control-next" type="button" style="filter: invert(1);" data-bs-target="#partnerCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon color" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
     </section>
-
-
-                <!-- Counter 3 -->
-                <div class="col-12 col-md-3">
-                    <h1 class="counter fw-bold text-warning" data-target="115" style="font-size: 64px;">0</h1>
-                    <h5 class="text-uppercase" style="color: black;">Volume Produksi</h5>
-                </div>
-            </div>
-        </div>
     </section>
+
 
 
 @endsection

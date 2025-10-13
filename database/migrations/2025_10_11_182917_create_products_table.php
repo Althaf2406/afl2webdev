@@ -22,7 +22,8 @@ return new class extends Migration
             $table->boolean('availability')->default(true);
             $table->decimal('price_per_m3', 15, 2)->default(0);
             $table->string('unit', ['m3','ton'] )->default('m3');
-            $table->enum('status', ['draft', 'published'])->default('draft');
+            $table->string('status')->check("status in ('draft', 'published')")->default('draft');
+
         });
     }
 

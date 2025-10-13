@@ -12,7 +12,7 @@ class PageController extends Controller
         $partnerList = Partner::all();
         return view('index', compact('partnerList'));
     }
-    public function galeri(){
+    public function gallery(){
         $galeriList = Galeri::paginate(6);
         return view('gallery', compact('galeriList'));
     }

@@ -14,7 +14,7 @@ Route::get('/company-overview', [PageController::class, 'company_overview']);
 
 Route::get('/index', [PageController::class, 'index']);
 
-Route::get('/galeri', [PageController::class, 'galeri']);
+Route::get('/gallery', [PageController::class, 'gallery']);
 
 Route::get('/mining-assets', [PageController::class, 'mining_assets']);
 

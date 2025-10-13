@@ -248,6 +248,10 @@
             }
         }
 
+        footer {
+            padding: 100px;
+        }
+
         /* --- End Nav bar --- */
 
         /* --- Content --- */
@@ -341,8 +345,7 @@
                     </li>
                     
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/galery" id="projectDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="/gallery" id="projectDropdown" role="button">
                             Galery
                         </a>
                         {{-- <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="projectDropdown">
@@ -376,11 +379,8 @@
     <div class="container-fluid" style="margin-top:20px;">
         @yield('content')
     </div>
-    <br>
-    <br>
-    <br>
-    <footer class="w-100">
-        <div class="m-8 d-flex justify-content-between gap-2">
+    <footer class="w-100" style="background-image: url(image/footer-bg.png); background-position: center;">
+        <div class="d-flex justify-content-between gap-2">
             <div class="m-8 d-flex-col">
                 <h4>About us</h4>
                 <p>

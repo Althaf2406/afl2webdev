@@ -3,7 +3,7 @@
 @section('title', 'Gallery')
 
 @section('content')
-    <section id="galeri" class="w-100">
+    <section id="gallery" class="w-100">
         @foreach ($galeriList->chunk(3) as $index => $chunk)
             <div class="d-flex-col w-100">
                 @foreach ($chunk as $galeri)

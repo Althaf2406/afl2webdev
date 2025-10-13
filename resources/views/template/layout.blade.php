@@ -9,7 +9,7 @@
     <link href="{{ asset('css/index.css') }}" rel="stylesheet">
 
     <style>
-body {
+        body {
             background-color: #000;
             color: #fff;
             margin: 0;
@@ -193,11 +193,6 @@ body {
             border-color: #fff;
         }
 
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-        }
-
-
         .lang-switch a {
             color: white;
             text-decoration: none;
@@ -208,28 +203,6 @@ body {
         .lang-switch span {
             color: white;
             margin-right: 8px;
-        }
-
-        .search-box {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(6px);
-            border-radius: 8px;
-            border: none;
-            color: white;
-            padding-left: 15px;
-            width: 220px;
-            height: 40px;
-        }
-
-        .search-box::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .search-btn {
-            background: transparent;
-            border: none;
-            color: white;
-            margin-left: -35px;
         }
 
         .contact-btn {
@@ -262,7 +235,7 @@ body {
 
         .highlight {
             display: inline-block;
-            background-color:#f39c12;
+            background-color: #f39c12;
             /* merah terang seperti di gambar */
             color: white;
             padding: 10px 25px;
@@ -272,13 +245,13 @@ body {
             letter-spacing: 2px;
         }
 
-            .main-text {
-      font-size: 64px;
-      font-weight: 900;
-      color: white;
-      text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
-      letter-spacing: 2px;
-    }
+        .main-text {
+            font-size: 64px;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+            letter-spacing: 2px;
+        }
     </style>
 
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -299,62 +272,21 @@ body {
             <div class="collapse navbar-collapse justify-content-center" id="mainNav">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/index" id="aboutDropdown">
+                        <a class="nav-link" href="/index" id="aboutDropdown">
                             About Us
                         </a>
-                        {{-- <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="aboutDropdown">
-                            <li><a class="dropdown-item" href="/companyoverview">Company Overview</a></li>
-                            <li><a class="dropdown-item" href="/our_history">Our History</a></li>
-                            <li><a class="dropdown-item" href="/leadership">Leadership</a></li>
-                        </ul> --}}
                     </li>
 
-                    {{-- <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="corpDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Corporate Governance
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="corpDropdown">
-                            <li><a class="dropdown-item" href="#">Policies</a></li>
-                            <li><a class="dropdown-item" href="#">Ethics & Compliance</a></li>
-                            <li><a class="dropdown-item" href="#">Transparency Report</a></li>
-                        </ul>
-                    </li> --}}
-
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/product" id="miningDropdown" role="button">
+                        <a class="nav-link" href="/product" id="miningDropdown" role="button">
                             Our Product
                         </a>
-                        {{-- <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="miningDropdown">
-                            <li><a class="dropdown-item" href="/product">Our Product</a></li>
-                            <li><a class="dropdown-item" href="#">Production Data</a></li>
-                            <li><a class="dropdown-item" href="#">Logistics</a></li>
-                        </ul> --}}
-                    </li>
-                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/gallery" id="projectDropdown" role="button">
-                            Galery
-                        </a>
-                        {{-- <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="projectDropdown">
-                            <li><a class="dropdown-item" href="#">Ongoing Projects</a></li>
-                            <li><a class="dropdown-item" href="#">Completed Projects</a></li>
-                            <li><a class="dropdown-item" href="#">Future Plans</a></li>
-                        </ul> --}}
                     </li>
 
-                    {{-- 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="" id="investorDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Investor Relation
+                        <a class="nav-link" href="/gallery" id="projectDropdown" role="button">
+                            Galery
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="investorDropdown">
-                            <li><a class="dropdown-item" href="#">Financial Reports</a></li>
-                            <li><a class="dropdown-item" href="#">Annual Statements</a></li>
-                            <li><a class="dropdown-item" href="#">Contact Investor Team</a></li>
-                        </ul>
-                    </li> --}}
                 </ul>
             </div>
         </div>
@@ -368,51 +300,27 @@ body {
         @yield('content')
     </div>
     <footer class="w-100" style="background-image: url(image/footer-bg.png); background-position: center;">
-        <div class="d-flex justify-content-between gap-2">
-            <div class="m-8 d-flex-col">
+        <div class="d-flex justify-content-between gap-2 row">
+            <div class="m-8 d-flex-col col">
                 <h4>About us</h4>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur 
-                    adipiscing elit. Pellentesque eget volutpat 
-                    lacus. Aenean scelerisque nisl in blandit 
-                    lacinia. Aenean varius pulvinar lectus eu 
-                    condimentum. Phasellus posuere aliquam 
-                    vehicula. Phasellus ornare purus et 
-                    pretium blandit. Pellentesque mauris dui, 
-                    efficitur ac libero eget, tincidunt facilisis mauris. 
-                    In tristique elementum mi, in venenatis orci. Phasellus 
-                    ultrices augue urna, nec euismod mauris ultricies nec.
+                    Tambang Pasir Jambi adalah perusahaan yang bergerak di bidang penambangan pasir berkualitas tinggi
+                    di wilayah Jambi.
+                    Dengan pengalaman bertahun-tahun, kami berkomitmen untuk menyediakan produk pasir yang memenuhi
+                    standar industri dan kebutuhan pelanggan kami.
                 </p>
             </div>
-            <div class="m-8 d-flex-col">
+            <div class="m-8 d-flex-col col">
                 <h4>Adress</h4>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur 
-                    adipiscing elit. Pellentesque eget volutpat 
-                    lacus. Aenean scelerisque nisl in blandit 
-                    lacinia. Aenean varius pulvinar lectus eu 
-                    condimentum. Phasellus posuere aliquam 
-                    vehicula. Phasellus ornare purus et 
-                    pretium blandit. Pellentesque mauris dui, 
-                    efficitur ac libero eget, tincidunt facilisis mauris. 
-                    In tristique elementum mi, in venenatis orci. Phasellus 
-                    ultrices augue urna, nec euismod mauris ultricies nec.
-                </p>
+                <a href="https://maps.app.goo.gl/qCAGJ2ks5MVr1BDr5">Jl. Lintas Timur, Desa Sungai Gelam,
+                    Kec. Sungai Gelam, Kab. Muaro Jambi,
+                    Jambi 36361, Indonesia</a>
             </div>
-            <div class="m-8 d-flex-col">
+            <div class="m-8 d-flex-col col">
                 <h4>Contact info</h4>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur 
-                    adipiscing elit. Pellentesque eget volutpat 
-                    lacus. Aenean scelerisque nisl in blandit 
-                    lacinia. Aenean varius pulvinar lectus eu 
-                    condimentum. Phasellus posuere aliquam 
-                    vehicula. Phasellus ornare purus et 
-                    pretium blandit. Pellentesque mauris dui, 
-                    efficitur ac libero eget, tincidunt facilisis mauris. 
-                    In tristique elementum mi, in venenatis orci. Phasellus 
-                    ultrices augue urna, nec euismod mauris ultricies nec.
-                </p>
+                <a href="wa.me/6281357719992">81357719992</a>
+                <br>
+                <a href="mailto:malthafhilmi@student.ciputra.ac.id">malthafhilmi@student.ciputra.ac.id</a>
             </div>
         </div>
         <div class="border-top border-secondary">

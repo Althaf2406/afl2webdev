@@ -16,17 +16,5 @@ class PageController extends Controller
         $galeriList = Galeri::paginate(6);
         return view('gallery', compact('galeriList'));
     }
-    public function investor_relation(){
-        return view('investor_relation');
-    }
-    public function mining_assets(){
-        return view('mining_assets');
-    }
-    public function project_data(){
-        return view('project_data');
-    }  
-    public function company_overview(){
-        return view('company_overview');
-    }
 
 }

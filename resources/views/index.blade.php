@@ -93,7 +93,7 @@
             <div class="row align-items-center justify-content-center gy-4">
                 <!-- Company Name -->
                 <div class="col-12 col-md-3">
-                    <h3 class="fw-bold" style="font-size: 24px;">FAJAR PUTIH ASSET</h3>
+                    <h3 class="fw-bold" style="font-size: 24px;">Tambang Pasir Asset</h3>
                 </div>
 
                 <!-- Counter 1 -->
@@ -107,10 +107,6 @@
                     <h1 class="counter fw-bold text-warning" data-target="9800" style="font-size: 64px;">0</h1>
                     <h5 class="text-uppercase" style="color: black;">Cadangan Raw Mineral</h5>
                 </div>
-
-
-    
-
 
                 <!-- Counter 3 -->
                 <div class="col-12 col-md-3">
@@ -166,7 +162,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const counters = document.querySelectorAll('.counter');
-        const speed = 200;
+        const speed = 1000;
 
         counters.forEach(counter => {
             const updateCount = () => {

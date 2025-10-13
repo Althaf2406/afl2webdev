@@ -61,7 +61,7 @@
 
                         <!-- Aksi -->
                         <div class="card-body d-flex justify-content-between">
-                            <a href="{{ url('/product/' . $pds->slug) }}" class="card-link" style="color: #ffb300;">Detail</a>
+                            <a href="{{ url('/product' . $pds->slug) }}" class="card-link" style="color: #ffb300;">Detail</a>
                             <a href="{{ url('/quotation/create') . '?product=' . $pds->id }}" class="card-link" style="color: #00c853;">Pesan Sekarang</a>
                         </div>
                     </div>

@@ -8,6 +8,16 @@ Route::get('/', [PageController::class, 'index']);
 
 Route::get('/galeri', [GaleriController::class, 'galeri']);
 
-Route::get('/gallery', [PageController::class, 'gallery']);
+Route::post('add.gallery', [GaleriController::class, 'store'])->name('add.gallery');
 
-Route::get('/product', [ModelController::class, 'product']);
+Route::put('/galeri/update/{id}', [GaleriController::class, 'update']);
+
+Route::delete('/galeri/delete/{id}', [GaleriController::class, 'destroy']);
+
+Route::get('/mining-assets', [PageController::class, 'mining_assets']);
+
+Route::get('/project-data', [PageController::class, 'project_data']);
+
+Route::get('/investor-relation', [PageController::class, 'investor_relation']);
+
+?>

@@ -181,7 +181,7 @@
                 const modalTitle = exampleModal.querySelector('.modal-title')
                 const modalBodyInput = exampleModal.querySelector('.modal-body input')
 
-                // modalTitle.textContent = `New message to ${recipient}`
+                // modalTitle.textContent = New message to ${recipient}
                 // modalBodyInput.value = recipient
             })
         }
@@ -199,7 +199,7 @@
                 modalEdit.querySelector('#edit_text').value = deskripsi;
 
                 const form = modalEdit.querySelector('#formEdit');
-                form.action = `/galeri/update/${id}`;
+                form.action = /galeri/update/${id};
             });
         });
 
@@ -210,7 +210,7 @@
             deleteModal.addEventListener('show.bs.modal', function(event) {
                 const button = event.relatedTarget;
                 const id = button.getAttribute('data-id');
-                deleteForm.action = `/galeri/delete/${id}`;
+                deleteForm.action = /galeri/delete/${id};
             });
         });
     </script>

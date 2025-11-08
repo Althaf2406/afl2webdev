@@ -14,5 +14,4 @@ Route::put('/galeri/update/{id}', [GaleriController::class, 'update']);
 
 Route::delete('/galeri/delete/{id}', [GaleriController::class, 'destroy']);
 
-
 ?>

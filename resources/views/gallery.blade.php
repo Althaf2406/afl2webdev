@@ -215,10 +215,4 @@
         });
     </script>
 
-
-        <div class="d-flex justify-content-center mt-4">
-            {{ $galeriList->links('pagination::bootstrap-5') }}
-        </div>
-    </section>
-
 @endsection

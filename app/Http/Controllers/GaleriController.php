@@ -39,7 +39,7 @@ class GaleriController extends Controller
         $galeri->deskripsi = $request->deskripsi;
 
         if ($request->hasFile('gambar')) {
-            $path = $request->file('gambar')->store('gallery', 'public');
+            $path = $request->file('gambar')->store('gambargaleri', 'public');
             $galeri->gambar = $path;
         }
 
@@ -52,8 +52,8 @@ class GaleriController extends Controller
     {
         $galeri = Galeri::findOrFail($id);
         
-        if ($galeri->gambar && file_exists(storage_path('app/public/storage/gambargaleri/' . $galeri->gambar))) {
-            unlink(storage_path('app/public/storage/gambargaleri/' . $galeri->gambar));
+        if ($galeri->gambar && file_exists(storage_path('app/public/gambargaleri/' . $galeri->gambar))) {
+            unlink(storage_path('app/public/gambargaleri/' . $galeri->gambar));
         }
 
         $galeri->delete();

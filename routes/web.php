@@ -20,3 +20,4 @@ Route::get('/project-data', [PageController::class, 'project_data']);
 
 Route::get('/investor-relation', [PageController::class, 'investor_relation']);
 
+?>

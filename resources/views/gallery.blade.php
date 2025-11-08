@@ -3,6 +3,7 @@
 @section('title', 'Gallery')
 
 @section('content')
+
     <section id="galeri" class="w-100">
         <form action="/galeri" method="GET" class="form-inline w-25 d-flex gap-2">
             <input type="search" name="search" class="form-control" placeholder="Search">
@@ -213,4 +214,11 @@
             });
         });
     </script>
+
+
+        <div class="d-flex justify-content-center mt-4">
+            {{ $galeriList->links('pagination::bootstrap-5') }}
+        </div>
+    </section>
+
 @endsection

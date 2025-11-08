@@ -13,4 +13,5 @@ class Partner extends Model
         'gambar',
     ];
     public $timestamps = false;
+
 }

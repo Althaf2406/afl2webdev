@@ -11,6 +11,7 @@ class PageController extends Controller
         $partnerList = Partner::all();
         return view('index', compact('partnerList'));
     }
+
     public function investor_relation(){
         return view('investor_relation');
     }

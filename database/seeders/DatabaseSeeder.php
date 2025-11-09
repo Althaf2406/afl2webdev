@@ -17,10 +17,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         $this->call(PartnerSeeder::class, 'run');
         $this->call(GaleriSeeder::class, 'run');
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $this->call(UserSeeder::class, 'run');
 
         Product::factory(0)->create();
     }

@@ -3,7 +3,6 @@
 @section('title', 'Gallery')
 
 @section('content')
-
     <section id="galeri" class="w-100">
         <form action="/galeri" method="GET" class="form-inline w-25 d-flex gap-2">
             <input type="search" name="search" class="form-control" placeholder="Search">

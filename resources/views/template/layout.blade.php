@@ -7,7 +7,7 @@
     <title>@yield('title', 'Tambang Pasir Jambi')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-    <title>Bootstrap Example</title>
+    <link rel="stylesheet" href="css/index.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
@@ -23,7 +23,7 @@
             </button>
 
             <!-- Navbar Items -->
-            <div class="collapse navbar-collapse justify-content-between" id="mainNav">
+            <div class="navbar-collapse justify-content-between" id="mainNav">
                 <!-- Menu Tengah -->
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item mx-2">
@@ -33,16 +33,36 @@
                         <a class="nav-link text-white fw-semibold" href="/product">Our Product</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link text-white fw-semibold" href="/galeri">Gallery</a>
+                        <a class="nav-link text-white fw-semibold" href="/gallery">Gallery</a>
                     </li>
                 </ul>
 
-                <!-- Tombol Contact di Kanan -->
-                <div class="d-flex">
-                    <a href="https://wa.me/6281357719992" class="btn btn-warning fw-semibold px-3 py-1 rounded-pill">
-                        CONTACT US
-                    </a>
-                </div>
+                <!-- Tombol Login di Kanan -->
+                @guest
+                    <div class="d-flex">
+                        <a href="/login" class="btn btn-warning fw-semibold px-3 py-1 rounded-pill">
+                            LOGIN
+                        </a>
+                    </div>
+                @endguest
+
+                @auth
+                    <div class="d-flex">
+                        <a href="/profile" class="btn fw-semibold px-3 py-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" width="35"
+                                height="35">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
+               10-4.48 10-10S17.52 2 12 2zm0 3
+               c1.66 0 3 1.34 3 3s-1.34 3-3 3
+               -3-1.34-3-3 1.34-3 3-3zm0 14.2
+               c-2.5 0-4.71-1.28-6-3.22
+               .03-1.99 4-3.08 6-3.08
+               1.99 0 5.97 1.09 6 3.08
+               -1.29 1.94-3.5 3.22-6 3.22z" />
+                            </svg>
+                        </a>
+                    </div>
+                @endauth
             </div>
         </div>
     </nav>

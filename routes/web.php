@@ -3,8 +3,10 @@
 use App\Http\Controllers\GaleriController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', [PageController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/index', [HomeController::class, 'index']);
 
 Route::get('/product', [ProductController::class, 'product']);
 

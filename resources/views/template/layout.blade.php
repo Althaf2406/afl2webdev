@@ -33,7 +33,7 @@
                         <a class="nav-link text-white fw-semibold" href="/product">Our Product</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link text-white fw-semibold" href="/gallery">Gallery</a>
+                        <a class="nav-link text-white fw-semibold" href="/galeri">Gallery</a>
                     </li>
                 </ul>
 

@@ -126,9 +126,18 @@
             </div>
         </section>
 
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-primary">
+                Edit Company Partner
+            </button>
+        </div>
+
         <!-- Company Partner -->
         <section id="partnerCarousel" class="carousel slide bg-white" data-bs-ride="carousel">
             <h2 class="text-center text-black">Our Partner</h2>
+            <button class="btn btn-primary">
+                Edit Company Partner
+            </button>
             <br>
             <div class="carousel-inner">
                 @foreach ($partnerList->chunk(3) as $index => $chunk)
@@ -169,7 +178,51 @@
 
 @endsection
 
+<style>
+    /* Bungkus card partner */
+    .partner-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
+    /* Efek zoom & shadow saat hover */
+    .partner-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Overlay hitam transparan */
+    .partner-card .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    /* Teks di tengah overlay */
+    .partner-card .overlay-text {
+        font-size: 1.1rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    /* Saat hover: tampilkan overlay dan teks */
+    .partner-card:hover .overlay {
+        opacity: 1;
+    }
+
+    .partner-card:hover .overlay-text {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const counters = document.querySelectorAll('.counter');

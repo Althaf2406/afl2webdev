@@ -9,6 +9,7 @@
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
         <div class="container-fluid">
@@ -70,10 +71,12 @@
 
 <body>
 
+    <section class="bg-black text-light py-5">
+        <div class="container">
+            @yield('content')
+        </div>
+    </section>
 
-    <div class="container-fluid" style="margin-top:20px;">
-        @yield('content')
-    </div>
     <footer class="w-100" style="background-image: url(image/footer-bg.png); background-position: center;">
         <div class="d-flex justify-content-between gap-2 row">
             <div class="m-8 d-flex-col col">

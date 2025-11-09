@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 abstract class Controller
 {
-    public function product(){
-        return view('product');
+    public function index()
+    {
+        return view('index');
     }
 }

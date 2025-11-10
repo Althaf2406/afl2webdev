@@ -27,14 +27,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ( as )
+                            {{-- @foreach ( as ) --}}
                                 <tr>
                                 <th scope="row">3</th>
                                 <td>John</td>
                                 <td>Doe</td>
                                 <td>@social</td>
                             </tr>
-                            @endforeach
+                            {{-- @endforeach --}}
                         </tbody>
                     </table>
                 </div>

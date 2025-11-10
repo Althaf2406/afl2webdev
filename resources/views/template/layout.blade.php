@@ -71,6 +71,11 @@
 
 <body>
 
+    <section class="bg-black text-light py-5">
+        <div class="container">
+            @yield('content')
+        </div>
+    </section>
 
     <div class="container-fluid" style="margin-top:20px;">
         @yield('content')

@@ -3,14 +3,18 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GaleriController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartnerController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/', [PageController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/index', [HomeController::class, 'index']);
+
+Route::get('/product', [ProductController::class, 'product']);
 
 Route::get('/galeri', [GaleriController::class, 'galeri']);
 

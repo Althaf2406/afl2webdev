@@ -9,10 +9,14 @@
             <button type="submit" class="btn btn-primary">Search</button>
         </form>
         <br>
-        <button type="button" class="btn btn-success w-100" style="hover: #989595" data-bs-toggle="modal"
-            data-bs-target="#addGallery">
-            <i class="bi bi-plus" style="font-size: 100px"></i>
-        </button>
+        @auth
+            @if (auth()->user()->status == 'admin')
+                <button type="button" class="btn btn-success w-100" style="hover: #989595" data-bs-toggle="modal"
+                    data-bs-target="#addGallery">
+                    <i class="bi bi-plus" style="font-size: 100px"></i>
+                </button>
+            @endif
+        @endauth
         <br>
         <br>
         <br>
@@ -30,16 +34,22 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $galeri->judul }}</h5>
                                     <p class="card-text">{{ $galeri->deskripsi }}</p>
-                                    <div class="row-s">
-                                        <button type="button" id="" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#modalEdit" data-id="{{ $galeri->id }}"
-                                            data-judul="{{ $galeri->judul }}" data-deskripsi="{{ $galeri->deskripsi }}"
-                                            data-gambar="{{ asset('storage/' . $galeri->gambar) }}">Edit</button>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#confirmDeleteModal" data-id="{{ $galeri->id }}">
-                                            Delete
-                                        </button>
-                                    </div>
+                                    @auth
+                                        @if (auth()->user()->status == 'admin')
+                                            <div class="row-s">
+                                                <button type="button" id="" class="btn btn-primary"
+                                                    data-bs-toggle="modal" data-bs-target="#modalEdit"
+                                                    data-id="{{ $galeri->id }}" data-judul="{{ $galeri->judul }}"
+                                                    data-deskripsi="{{ $galeri->deskripsi }}"
+                                                    data-gambar="{{ asset('storage/' . $galeri->gambar) }}">Edit</button>
+                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#confirmDeleteModal" data-id="{{ $galeri->id }}">
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        @endif
+                                    @endauth
+
                                 </div>
 
                             </div>
@@ -193,12 +203,14 @@
                 const judul = button.getAttribute('data-judul');
                 const deskripsi = button.getAttribute('data-deskripsi');
 
+                // Isi field modal edit
                 modalEdit.querySelector('#edit_id').value = id;
                 modalEdit.querySelector('#edit_title').value = judul;
                 modalEdit.querySelector('#edit_text').value = deskripsi;
 
+                // Atur URL form dengan benar
                 const form = modalEdit.querySelector('#formEdit');
-                form.action = /galeri/update/${id};
+                form.action = `/galeri/update/${id}`;
             });
         });
 
@@ -209,15 +221,9 @@
             deleteModal.addEventListener('show.bs.modal', function(event) {
                 const button = event.relatedTarget;
                 const id = button.getAttribute('data-id');
-                deleteForm.action = /galeri/delete/${id};
+                deleteForm.action = `/galeri/delete/${id}`;
             });
         });
     </script>
-
-
-        <div class="d-flex justify-content-center mt-4">
-            {{ $galeriList->links('pagination::bootstrap-5') }}
-        </div>
-    </section>
 
 @endsection

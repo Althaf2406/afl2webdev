@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GaleriController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
-
+use App\Http\Controllers\PartnerController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -14,13 +14,13 @@ Route::get('/', [PageController::class, 'index']);
 
 Route::get('/galeri', [GaleriController::class, 'galeri']);
 
-Route::post('add.gallery', [GaleriController::class, 'store'])->name('add.gallery');
+Route::post('add.gallery', [GaleriController::class, 'store'])->name('add.gallery')->middleware('admin');
 
-Route::put('/galeri/update/{id}', [GaleriController::class, 'update']);
+Route::put('/galeri/update/{galeri}', [GaleriController::class, 'update'])->middleware('admin');
 
-Route::delete('/galeri/delete/{id}', [GaleriController::class, 'destroy']);
+Route::delete('/galeri/delete/{galeri}', [GaleriController::class, 'destroy'])->middleware('admin');
 
-Route::get('/profile', [ProfileController::class, 'profile']);
+Route::get('/company-partner', [PartnerController::class, 'adminPage'])->middleware('admin');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

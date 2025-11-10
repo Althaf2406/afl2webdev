@@ -126,18 +126,24 @@
             </div>
         </section>
 
-        <div class="d-flex justify-content-center">
-            <button class="btn btn-primary">
-                Edit Company Partner
-            </button>
-        </div>
 
         <!-- Company Partner -->
         <section id="partnerCarousel" class="carousel slide bg-white" data-bs-ride="carousel">
-            <h2 class="text-center text-black">Our Partner</h2>
-            <button class="btn btn-primary">
-                Edit Company Partner
-            </button>
+            @auth
+                @if (auth()->user()->status == 'admin')
+                    <div class="d-flex justify-content-center">
+                        <a href="/company-partner" class="btn btn-primary">
+                            Edit Company Partner
+                        </a>
+                    </div>
+                @else
+                    <h2 class="text-center text-black">Our Partner</h2>
+                @endif
+            @endauth
+            @guest
+                <h2 class="text-center text-black">Our Partner</h2>
+            @endguest
+
             <br>
             <div class="carousel-inner">
                 @foreach ($partnerList->chunk(3) as $index => $chunk)

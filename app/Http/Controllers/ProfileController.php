@@ -11,10 +11,6 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    public function myProfile(){
-        $user = Auth::user();
-        return view('profile', compact('user'));
-    }
     /**
      * Display the user's profile form.
      */

@@ -9,6 +9,7 @@
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
         <div class="container-fluid">
@@ -74,34 +75,48 @@
     <div class="container-fluid" style="margin-top:20px;">
         @yield('content')
     </div>
-    <footer class="w-100" style="background-image: url(image/footer-bg.png); background-position: center;">
-        <div class="d-flex justify-content-between gap-2 row">
-            <div class="m-8 d-flex-col col">
-                <h4>About us</h4>
-                <p>
+    <footer class="w-100 text-white py-5"
+    style="background-image: url('image/footer-bg.png'); background-position: center; background-size: cover; background-repeat: no-repeat;">
+    <div class="container">
+        <div class="row text-center text-md-start justify-content-between">
+            <!-- About Us -->
+            <div class="col-12 col-md-4 mb-4">
+                <h4 class="fw-bold mb-3">About Us</h4>
+                <p class="mb-0">
                     Tambang Pasir Jambi adalah perusahaan yang bergerak di bidang penambangan pasir berkualitas tinggi
-                    di wilayah Jambi.
-                    Dengan pengalaman bertahun-tahun, kami berkomitmen untuk menyediakan produk pasir yang memenuhi
-                    standar industri dan kebutuhan pelanggan kami.
+                    di wilayah Jambi. Dengan pengalaman bertahun-tahun, kami berkomitmen untuk menyediakan produk pasir
+                    yang memenuhi standar industri dan kebutuhan pelanggan kami.
                 </p>
             </div>
-            <div class="m-8 d-flex-col col">
-                <h4>Adress</h4>
-                <a href="https://maps.app.goo.gl/qCAGJ2ks5MVr1BDr5">Jl. Lintas Timur, Desa Sungai Gelam,
-                    Kec. Sungai Gelam, Kab. Muaro Jambi,
-                    Jambi 36361, Indonesia</a>
+
+            <!-- Address -->
+            <div class="col-12 col-md-4 mb-4">
+                <h4 class="fw-bold mb-3">Address</h4>
+                <a href="https://maps.app.goo.gl/qCAGJ2ks5MVr1BDr5" target="_blank" class="text-white text-decoration-none">
+                    Jl. Lintas Timur, Desa Sungai Gelam, Kec. Sungai Gelam, Kab. Muaro Jambi,<br>
+                    Jambi 36361, Indonesia
+                </a>
             </div>
-            <div id = "contact" class="m-8 d-flex-col col">
-                <h4>Contact info</h4>
-                <a href="https://wa.me/6281357719992">81357719992</a>
-                <br>
-                <a href="mailto:malthafhilmi@student.ciputra.ac.id">malthafhilmi@student.ciputra.ac.id</a>
+
+            <!-- Contact Info -->
+            <div class="col-12 col-md-3 mb-4">
+                <h4 class="fw-bold mb-3">Contact Info</h4>
+                <a href="https://wa.me/6281357719992" class="d-block text-white text-decoration-none mb-2">
+                    📞 0813-5771-9992
+                </a>
+                <a href="mailto:malthafhilmi@student.ciputra.ac.id" class="d-block text-white text-decoration-none">
+                    ✉️ malthafhilmi@student.ciputra.ac.id
+                </a>
             </div>
         </div>
-        <div class="border-top border-secondary">
-            <p class="text-center p-3">All right reserved</p>
+
+        <!-- Footer Bottom -->
+        <div class="border-top border-secondary mt-4 pt-3">
+            <p class="text-center mb-0">&copy; 2025 Tambang Pasir Jambi — All rights reserved.</p>
         </div>
-    </footer>
+    </div>
+</footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

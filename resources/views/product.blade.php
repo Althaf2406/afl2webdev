@@ -69,9 +69,129 @@
                                 <a href="{{ url('/quotation/create') . '?product=' . $pds->id }}" class="card-link"
                                     style="color: #00c853;">Pesan Sekarang</a>
                             </div>
+
+                            <!-- Edit dan Hapus (Admin) -->
+                            @auth
+                                @if (auth()->user()->status == 'admin')
+                                    <div class="card-body d-flex justify-content-end gap-3">
+                                        <button type="button" 
+                                            class="btn btn-sm" 
+                                            style="background-color: #ffb300; color: #000;"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalEditProduct"
+                                            data-id="{{ $pds->id }}"
+                                            data-name="{{ $pds->name }}"
+                                            data-short_description="{{ $pds->short_description }}"
+                                            data-description="{{ $pds->description }}"
+                                            data-price_per_m3="{{ $pds->price_per_m3 }}"
+                                            data-unit="{{ $pds->unit }}"
+                                            data-availability="{{ $pds->availability }}">
+                                            Edit
+                                        </button>
+
+                                        <button type="button" class="btn btn-danger" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#confirmDeleteModal" 
+                                            data-id="{{ $pds->id }}">
+                                            Delete
+                                        </button>
+
+                                    </div>
+                                @endif
+                            @endauth
                         </div>
                     </div>
                 @endforeach
+            </div>
+
+            <!-- Modal Edit Produk -->
+<div class="modal fade" id="modalEditProduct" tabindex="-1" aria-labelledby="modalEditProductLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content text-dark">
+            <div class="modal-header" style="background-color: #ffb300;">
+                <h5 class="modal-title fw-bold" id="modalEditProductLabel">Edit Produk</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body bg-dark text-light">
+                <form id="formEditProduct" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+
+                    <input type="hidden" id="edit_id" name="id">
+
+                    <div class="mb-3">
+                        <label for="edit_name" class="form-label text-warning">Nama Produk</label>
+                        <input type="text" class="form-control bg-secondary text-light border-0" id="edit_name" name="name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="edit_short_description" class="form-label text-warning">Deskripsi Singkat</label>
+                        <input type="text" class="form-control bg-secondary text-light border-0" id="edit_short_description" name="short_description" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="edit_description" class="form-label text-warning">Deskripsi Lengkap</label>
+                        <textarea class="form-control bg-secondary text-light border-0" id="edit_description" name="description" rows="4" required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="edit_price_per_m3" class="form-label text-warning">Harga (Rp/m³)</label>
+                        <input type="number" class="form-control bg-secondary text-light border-0" id="edit_price_per_m3" name="price_per_m3" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="edit_unit" class="form-label text-warning">Satuan</label>
+                        <input type="text" class="form-control bg-secondary text-light border-0" id="edit_unit" name="unit" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="edit_availability" class="form-label text-warning">Ketersediaan</label>
+                        <select class="form-select bg-secondary text-light border-0" id="edit_availability" name="availability">
+                            <option value="1">Tersedia</option>
+                            <option value="0">Habis</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="edit_image" class="form-label text-warning">Upload Gambar Baru</label>
+                        <input type="file" class="form-control bg-secondary text-light border-0" id="edit_image" name="image">
+                        <small class="text-muted">Biarkan kosong jika tidak ingin mengganti gambar.</small>
+                    </div>
+
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-warning text-dark fw-bold">Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+            <!-- Modal Konfirmasi Delete -->
+            <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content text-dark">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmDeleteLabel">Konfirmasi Hapus</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Apakah kamu yakin ingin menghapus produk ini?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <form id="deleteForm" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             @auth
@@ -97,21 +217,24 @@
                                     <div class="mb-4">
                                         <label class="form-label fw-semibold" style="color: #ffb300;">Slug</label>
                                         <input type="text" name="slug" class="form-control border-0 shadow-sm"
-                                            placeholder="contoh: pasir-silika" style="background-color: #1a1a1a; color: #fff;">
+                                            placeholder="contoh: pasir-silika"
+                                            style="background-color: #1a1a1a; color: #fff;">
                                         <small class="text-secondary">Slug digunakan untuk URL produk.</small>
                                     </div>
 
                                     <!-- Short Description -->
                                     <div class="mb-4">
-                                        <label class="form-label fw-semibold" style="color: #ffb300;">Deskripsi Singkat</label>
-                                        <input type="text" name="short_description" class="form-control border-0 shadow-sm"
-                                            placeholder="Ringkasan singkat produk..."
+                                        <label class="form-label fw-semibold" style="color: #ffb300;">Deskripsi
+                                            Singkat</label>
+                                        <input type="text" name="short_description"
+                                            class="form-control border-0 shadow-sm" placeholder="Ringkasan singkat produk..."
                                             style="background-color: #1a1a1a; color: #fff;">
                                     </div>
 
                                     <!-- Deskripsi Lengkap -->
                                     <div class="mb-4">
-                                        <label class="form-label fw-semibold" style="color: #ffb300;">Deskripsi Lengkap</label>
+                                        <label class="form-label fw-semibold" style="color: #ffb300;">Deskripsi
+                                            Lengkap</label>
                                         <textarea name="description" rows="5" class="form-control border-0 shadow-sm"
                                             placeholder="Tuliskan detail lengkap produk..." style="background-color: #1a1a1a; color: #fff;"></textarea>
                                     </div>
@@ -187,5 +310,84 @@
         @endauth
 
     </section>
+    <style>
+        .btn-success {
+            background-color: #B2B0B0;
+            outline: 2px dashed;
+        }
+
+        .btn-success:hover {
+            background-color: #989595
+        }
+
+        .btn-success:focus,
+        .btn-success:active {
+            background-color: #989595 !important;
+            box-shadow: none !important;
+            outline: 2px dashed !important;
+        }
+
+        #addGallery .modal-content,
+        #modalEdit .modal-content,
+        #confirmDeleteModal .modal-content {
+            color: black;
+        }
+    </style>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // === Modal Tambah Product ===
+        const addProductModal = document.getElementById('addProduct');
+        if (addProductModal) {
+            addProductModal.addEventListener('show.bs.modal', event => {
+                const button = event.relatedTarget;
+                // Bisa diisi nanti kalau kamu mau tambahin data attribute untuk "edit dari modal tambah"
+            });
+        }
+
+        // === Modal Edit Produk ===
+    const editModal = document.getElementById('modalEditProduct');
+    const editForm = document.getElementById('formEditProduct');
+
+    if (editModal && editForm) {
+        editModal.addEventListener('show.bs.modal', function(event) {
+            const button = event.relatedTarget;
+
+            // Ambil data dari tombol edit
+            const id = button.getAttribute('data-id');
+            const name = button.getAttribute('data-name');
+            const shortDesc = button.getAttribute('data-short_description');
+            const desc = button.getAttribute('data-description');
+            const price = button.getAttribute('data-price_per_m3');
+            const unit = button.getAttribute('data-unit');
+            const avail = button.getAttribute('data-availability');
+
+            // Isi nilai ke form edit
+            editForm.action = `/product/update/${id}`;
+            document.getElementById('edit_id').value = id;
+            document.getElementById('edit_name').value = name;
+            document.getElementById('edit_short_description').value = shortDesc;
+            document.getElementById('edit_description').value = desc;
+            document.getElementById('edit_price_per_m3').value = price;
+            document.getElementById('edit_unit').value = unit;
+            document.getElementById('edit_availability').value = avail;
+        });
+    
+
+        }
+
+        // === Modal Delete Product ===
+        const deleteModal = document.getElementById('confirmDeleteModal');
+        const deleteForm = document.getElementById('deleteForm');
+
+        if (deleteModal && deleteForm) {
+            deleteModal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                const id = button.getAttribute('data-id');
+                deleteForm.action = `/product/delete/${id}`;
+            });
+        }
+    });
+</script>
+
 
 @endsection

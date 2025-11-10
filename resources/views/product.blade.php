@@ -74,25 +74,19 @@
                             @auth
                                 @if (auth()->user()->status == 'admin')
                                     <div class="card-body d-flex justify-content-end gap-3">
-                                        <button type="button" 
-                                            class="btn btn-sm" 
-                                            style="background-color: #ffb300; color: #000;"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#modalEditProduct"
-                                            data-id="{{ $pds->id }}"
+                                        <button type="button" class="btn btn-sm"
+                                            style="background-color: #ffb300; color: #000;" data-bs-toggle="modal"
+                                            data-bs-target="#modalEditProduct" data-id="{{ $pds->id }}"
                                             data-name="{{ $pds->name }}"
                                             data-short_description="{{ $pds->short_description }}"
                                             data-description="{{ $pds->description }}"
-                                            data-price_per_m3="{{ $pds->price_per_m3 }}"
-                                            data-unit="{{ $pds->unit }}"
-                                            data-availability="{{ $pds->availability }}">
+                                            data-price_per_m3="{{ $pds->price_per_m3 }}" data-unit="{{ $pds->unit }}"
+                                            data-availability="{{ $pds->availability ? '1' : '0' }}">
                                             Edit
                                         </button>
 
-                                        <button type="button" class="btn btn-danger" 
-                                            data-bs-toggle="modal" 
-                                            data-bs-target="#confirmDeleteModal" 
-                                            data-id="{{ $pds->id }}">
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#confirmDeleteModal" data-id="{{ $pds->id }}">
                                             Delete
                                         </button>
 
@@ -105,74 +99,97 @@
             </div>
 
             <!-- Modal Edit Produk -->
-<div class="modal fade" id="modalEditProduct" tabindex="-1" aria-labelledby="modalEditProductLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content text-dark">
-            <div class="modal-header" style="background-color: #ffb300;">
-                <h5 class="modal-title fw-bold" id="modalEditProductLabel">Edit Produk</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal fade" id="modalEditProduct" tabindex="-1" aria-labelledby="modalEditProductLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content text-dark">
+                        <div class="modal-header" style="background-color: #ffb300;">
+                            <h5 class="modal-title fw-bold" id="modalEditProductLabel">Edit Produk</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body bg-dark text-light">
+                            <form id="formEditProduct" action="" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+
+                                <input type="hidden" id="edit_id" name="id">
+
+                                <div class="mb-3">
+                                    <label for="edit_name" class="form-label">Nama</label>
+                                    <input type="text" id="edit_name" name="name" class="form-control" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="edit_slug" class="form-label">Slug (opsional)</label>
+                                    <input type="text" id="edit_slug" name="slug" class="form-control">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="edit_short_description" class="form-label">Short Description</label>
+                                    <textarea id="edit_short_description" name="short_description" class="form-control"></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="edit_description" class="form-label">Description</label>
+                                    <textarea id="edit_description" name="description" class="form-control"></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="edit_specification" class="form-label">Specification (JSON atau
+                                        teks)</label>
+                                    <textarea id="edit_specification" name="specification" class="form-control"></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="edit_price_per_m3" class="form-label">Price per m3</label>
+                                    <input type="number" step="0.01" id="edit_price_per_m3" name="price_per_m3"
+                                        class="form-control" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="edit_unit" class="form-label">Unit</label>
+                                    <input type="text" id="edit_unit" name="unit" class="form-control" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="edit_availability" class="form-label">Availability</label>
+                                    <select id="edit_availability" name="availability" class="form-select" required>
+                                        <option value="1">Available</option>
+                                        <option value="0">Not available</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="edit_status" class="form-label">Status</label>
+                                    <select id="edit_status" name="status" class="form-select" required>
+                                        <option value="draft">draft</option>
+                                        <option value="published">published</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="edit_image" class="form-label">Ganti Gambar (opsional)</label>
+                                    <input type="file" id="edit_image" name="image" class="form-control"
+                                        accept="image/*">
+                                </div>
+
+                                <div class="modal-footer border-0">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="modal-body bg-dark text-light">
-                <form id="formEditProduct" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-
-                    <input type="hidden" id="edit_id" name="id">
-
-                    <div class="mb-3">
-                        <label for="edit_name" class="form-label text-warning">Nama Produk</label>
-                        <input type="text" class="form-control bg-secondary text-light border-0" id="edit_name" name="name" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="edit_short_description" class="form-label text-warning">Deskripsi Singkat</label>
-                        <input type="text" class="form-control bg-secondary text-light border-0" id="edit_short_description" name="short_description" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="edit_description" class="form-label text-warning">Deskripsi Lengkap</label>
-                        <textarea class="form-control bg-secondary text-light border-0" id="edit_description" name="description" rows="4" required></textarea>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="edit_price_per_m3" class="form-label text-warning">Harga (Rp/m³)</label>
-                        <input type="number" class="form-control bg-secondary text-light border-0" id="edit_price_per_m3" name="price_per_m3" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="edit_unit" class="form-label text-warning">Satuan</label>
-                        <input type="text" class="form-control bg-secondary text-light border-0" id="edit_unit" name="unit" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="edit_availability" class="form-label text-warning">Ketersediaan</label>
-                        <select class="form-select bg-secondary text-light border-0" id="edit_availability" name="availability">
-                            <option value="1">Tersedia</option>
-                            <option value="0">Habis</option>
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="edit_image" class="form-label text-warning">Upload Gambar Baru</label>
-                        <input type="file" class="form-control bg-secondary text-light border-0" id="edit_image" name="image">
-                        <small class="text-muted">Biarkan kosong jika tidak ingin mengganti gambar.</small>
-                    </div>
-
-                    <div class="modal-footer border-0">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-warning text-dark fw-bold">Simpan Perubahan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
             <!-- Modal Konfirmasi Delete -->
-            <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+            <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteLabel"
+                aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content text-dark">
                         <div class="modal-header">
@@ -184,7 +201,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <form id="deleteForm" method="POST">
+                            <form id="deleteForm" action="" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Ya, Hapus</button>
@@ -210,7 +227,8 @@
                                     <div class="mb-4">
                                         <label class="form-label fw-semibold" style="color: #ffb300;">Nama Produk</label>
                                         <input type="text" name="name" class="form-control border-0 shadow-sm"
-                                            placeholder="Contoh: Pasir Silika" style="background-color: #1a1a1a; color: #fff;">
+                                            placeholder="Contoh: Pasir Silika"
+                                            style="background-color: #1a1a1a; color: #fff;">
                                     </div>
 
                                     <!-- Slug -->
@@ -334,60 +352,61 @@
         }
     </style>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // === Modal Tambah Product ===
-        const addProductModal = document.getElementById('addProduct');
-        if (addProductModal) {
-            addProductModal.addEventListener('show.bs.modal', event => {
-                const button = event.relatedTarget;
-                // Bisa diisi nanti kalau kamu mau tambahin data attribute untuk "edit dari modal tambah"
-            });
-        }
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     // === Modal Tambah Product ===
+        //     const addProductModal = document.getElementById('addProduct');
+        //     if (addProductModal) {
+        //         addProductModal.addEventListener('show.bs.modal', event => {
+        //             const button = event.relatedTarget;
+        //             // Bisa diisi nanti kalau kamu mau tambahin data attribute untuk "edit dari modal tambah"
+        //         });
+        //     }
 
-        // === Modal Edit Produk ===
-    const editModal = document.getElementById('modalEditProduct');
-    const editForm = document.getElementById('formEditProduct');
+        document.addEventListener('DOMContentLoaded', function() {
+            // === Modal Edit Product ===
+            const editModal = document.getElementById('modalEditProduct');
+            const editForm = document.getElementById('formEditProduct');
 
-    if (editModal && editForm) {
-        editModal.addEventListener('show.bs.modal', function(event) {
-            const button = event.relatedTarget;
+            if (editModal && editForm) {
+                editModal.addEventListener('show.bs.modal', function(event) {
+                    const button = event.relatedTarget;
 
-            // Ambil data dari tombol edit
-            const id = button.getAttribute('data-id');
-            const name = button.getAttribute('data-name');
-            const shortDesc = button.getAttribute('data-short_description');
-            const desc = button.getAttribute('data-description');
-            const price = button.getAttribute('data-price_per_m3');
-            const unit = button.getAttribute('data-unit');
-            const avail = button.getAttribute('data-availability');
+                    // Ambil data dari tombol edit
+                    const id = button.getAttribute('data-id');
+                    const name = button.getAttribute('data-name');
+                    const shortDesc = button.getAttribute('data-short_description');
+                    const desc = button.getAttribute('data-description');
+                    const price = button.getAttribute('data-price_per_m3');
+                    const unit = button.getAttribute('data-unit');
+                    const avail = button.getAttribute('data-availability');
 
-            // Isi nilai ke form edit
-            editForm.action = `/product/update/${id}`;
-            document.getElementById('edit_id').value = id;
-            document.getElementById('edit_name').value = name;
-            document.getElementById('edit_short_description').value = shortDesc;
-            document.getElementById('edit_description').value = desc;
-            document.getElementById('edit_price_per_m3').value = price;
-            document.getElementById('edit_unit').value = unit;
-            document.getElementById('edit_availability').value = avail;
+                    // Set action URL
+                    editForm.action = `/product/update/${id}`;
+
+                    // Isi form fields
+                    document.getElementById('edit_id').value = id;
+                    document.getElementById('edit_name').value = name;
+                    document.getElementById('edit_short_description').value = shortDesc;
+                    document.getElementById('edit_description').value = desc;
+                    document.getElementById('edit_price_per_m3').value = price;
+                    document.getElementById('edit_unit').value = unit;
+                    document.getElementById('edit_availability').value = avail;
+                });
+            }
+
+            // === Modal Delete Product ===
+            const deleteModal = document.getElementById('confirmDeleteModal');
+            const deleteForm = document.getElementById('deleteForm');
+
+            if (deleteModal && deleteForm) {
+                deleteModal.addEventListener('show.bs.modal', function(event) {
+                    const button = event.relatedTarget;
+                    const id = button.getAttribute('data-id');
+                    deleteForm.action = `/product/delete/${id}`;
+                });
+            }
         });
-    
-
-        }
-
-        // === Modal Delete Product ===
-        const deleteModal = document.getElementById('confirmDeleteModal');
-        const deleteForm = document.getElementById('deleteForm');
-
-        if (deleteModal && deleteForm) {
-            deleteModal.addEventListener('show.bs.modal', function(event) {
-                const button = event.relatedTarget;
-                const id = button.getAttribute('data-id');
-                deleteForm.action = `/product/delete/${id}`;
-            });
-        }
-    });
-</script>
+    </script>
 
 
 @endsection

@@ -26,23 +26,17 @@ Route::delete('/galeri/delete/{id}', [GaleriController::class, 'destroy']);
 
 Route::get('/profile', [ProfileController::class, 'profile']);
 
+Route::get('/product', [ProductController::class, 'product']);
+Route::put('/product/update/{id}', [ProductController::class, 'update']);
+Route::delete('/product/delete/{id}', [ProductController::class, 'destroy']);
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-// Menampilkan halaman daftar produk (dengan pencarian optional)
-Route::get('/product', [ProductController::class, 'product'])->name('product.list');
-
-// Menambahkan produk baru
-Route::post('/add.product', [ProductController::class, 'store'])->name('add.product');
-
-// Memperbarui produk berdasarkan ID
-Route::put('/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
-
-// Menghapus produk berdasarkan ID
-Route::delete('/product/delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
 
 
 require __DIR__.'/auth.php';

@@ -43,16 +43,19 @@ class ProductController extends Controller
             'status' => 'required|string|in:draft,published',
         ]);
 
-        // Simpan gambar
-        $path = $request->file('image')->store('product_images', 'public');
+        // Simpan gambar jika ada
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('product_images', 'public');
+            $imagePath = 'storage/' . $path;
+        }
 
-        // Simpan ke database
         Product::create([
             'name' => $request->name,
             'slug' => $request->slug ?? strtolower(str_replace(' ', '-', $request->name)),
             'short_description' => $request->short_description,
             'description' => $request->description,
-            'image' => 'storage/' . $path,
+            'image' => $imagePath,
             'specification' => $this->parseSpecification($request->specification),
             'availability' => $request->availability,
             'price_per_m3' => $request->price_per_m3,
@@ -82,28 +85,34 @@ class ProductController extends Controller
             'status' => 'required|string|in:draft,published',
         ]);
 
-        // Jika gambar baru diupload
+        // Assign fields correctly
+        $product->name = $request->name;
+        $product->slug = $request->slug ?? strtolower(str_replace(' ', '-', $request->name));
+        $product->short_description = $request->short_description;
+        $product->description = $request->description;
+        $product->specification = $this->parseSpecification($request->specification);
+        $product->availability = $request->availability;
+        $product->price_per_m3 = $request->price_per_m3;
+        $product->unit = $request->unit;
+        $product->status = $request->status;
+
+        // Kalau ada file baru, simpan dan hapus file lama
         if ($request->hasFile('image')) {
-            // Hapus gambar lama
-            if ($product->image && Storage::disk('public')->exists(str_replace('storage/', '', $product->image))) {
-                Storage::disk('public')->delete(str_replace('storage/', '', $product->image));
+            $path = $request->file('image')->store('product_images', 'public');
+            $newImage = 'storage/' . $path;
+
+            // hapus image lama jika ada
+            if ($product->image) {
+                $old = str_replace('storage/', '', $product->image);
+                if (Storage::disk('public')->exists($old)) {
+                    Storage::disk('public')->delete($old);
+                }
             }
 
-            // Simpan gambar baru
-            $path = $request->file('image')->store('product_images', 'public');
-            $product->image = 'storage/' . $path;
+            $product->image = $newImage;
         }
 
-        $product->update([
-            'name' => $request->name,
-            'short_description' => $request->short_description,
-            'description' => $request->description,
-            'specification' => $this->parseSpecification($request->specification),
-            'availability' => $request->availability,
-            'price_per_m3' => $request->price_per_m3,
-            'unit' => $request->unit,
-            'status' => $request->status,
-        ]);
+        $product->save();
 
         return redirect('/product')->with('success', 'Produk berhasil diperbarui!');
     }

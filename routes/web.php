@@ -26,10 +26,20 @@ Route::delete('/galeri/delete/{galeri}', [GaleriController::class, 'destroy'])->
 
 Route::get('/company-partner', [PartnerController::class, 'adminPage'])->middleware('admin');
 
+Route::get('/product', [ProductController::class, 'product']);
+
+Route::post('add.product', [ProductController::class, 'store'])->name('add.product');
+Route::put('/product/update/{id}', [ProductController::class, 'update']);
+
+Route::delete('/product/delete/{id}', [ProductController::class, 'destroy']);
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 require __DIR__.'/auth.php';

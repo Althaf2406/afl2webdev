@@ -74,9 +74,6 @@
         </div>
     </section>
 
-    <div class="container-fluid" style="margin-top:20px;">
-        @yield('content')
-    </div>
     <footer class="w-100 text-white py-5"
         style="background-image: url('image/footer-bg.png'); background-position: center; background-size: cover; background-repeat: no-repeat;">
         <div class="container">

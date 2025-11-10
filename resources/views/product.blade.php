@@ -14,6 +14,19 @@
                     style="width: 80px; height: 3px; background-color: #ffb300; border: none; border-radius: 2px;">
             </div>
 
+            @auth
+                @if (auth()->user()->status == 'admin')
+                    <button type="button" class="btn btn-success w-100" style="hover: #989595" data-bs-toggle="modal"
+                        data-bs-target="#addProduct">
+                        <i class="bi bi-plus" style="font-size: 100px"></i>
+                    </button>
+                @endif
+            @endauth
+
+            <br>
+            <br>
+            <br>
+
             <!-- Product Grid -->
             <div class="row g-4">
                 @foreach ($product as $pds)
@@ -98,6 +111,109 @@
                 @endforeach
             </div>
 
+            <!-- Modal Tambah Produk -->
+            <div class="modal fade" id="addProduct" tabindex="-1" aria-labelledby="addProductLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content text-dark">
+                        <div class="modal-header" style="background-color: #ffb300;">
+                            <h5 class="modal-title fw-bold" id="addProductLabel">Tambah Produk Baru</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body bg-dark text-light">
+                            <form action="{{ route('add.product') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <!-- Nama Produk -->
+                                <div class="mb-3">
+                                    <label for="name" class="form-label text-warning">Nama Produk</label>
+                                    <input type="text" name="name" id="name"
+                                        class="form-control bg-secondary text-light border-0"
+                                        placeholder="Contoh: Pasir Silika" required>
+                                </div>
+
+                                <!-- Deskripsi Singkat -->
+                                <div class="mb-3">
+                                    <label for="short_description" class="form-label text-warning">Deskripsi
+                                        Singkat</label>
+                                    <input type="text" name="short_description" id="short_description"
+                                        class="form-control bg-secondary text-light border-0"
+                                        placeholder="Ringkasan singkat produk..." required>
+                                </div>
+
+                                <!-- Deskripsi Lengkap -->
+                                <div class="mb-3">
+                                    <label for="description" class="form-label text-warning">Deskripsi Lengkap</label>
+                                    <textarea name="description" id="description" rows="4" class="form-control bg-secondary text-light border-0"
+                                        placeholder="Tuliskan detail lengkap produk..." required></textarea>
+                                </div>
+
+                                <!-- Upload Gambar -->
+                                <div class="mb-3">
+                                    <label for="image" class="form-label text-warning">Upload Gambar Produk</label>
+                                    <input type="file" name="image" id="image"
+                                        class="form-control bg-secondary text-light border-0" accept="image/*" required>
+                                    <small class="text-muted">Upload gambar utama produk.</small>
+                                </div>
+
+                                <!-- Spesifikasi (JSON input) -->
+                                <div class="mb-3">
+                                    <label for="specification" class="form-label text-warning">Spesifikasi</label>
+                                    <textarea name="specification" id="specification" rows="3"
+                                        class="form-control bg-secondary text-light border-0"
+                                        placeholder='Contoh: {"Kadar Silika": "99%", "Ukuran Butir": "0.1 - 2 mm"}'></textarea>
+                                    <small class="text-muted">Masukkan dalam format JSON (kunci dan nilai).</small>
+                                </div>
+
+                                <!-- Ketersediaan -->
+                                <div class="mb-3">
+                                    <label for="availability" class="form-label text-warning">Ketersediaan</label>
+                                    <select name="availability" id="availability"
+                                        class="form-select bg-secondary text-light border-0">
+                                        <option value="1">Tersedia</option>
+                                        <option value="0">Habis</option>
+                                    </select>
+                                </div>
+
+                                <!-- Harga -->
+                                <div class="mb-3">
+                                    <label for="price_per_m3" class="form-label text-warning">Harga (Rp/m³)</label>
+                                    <input type="number" name="price_per_m3" id="price_per_m3"
+                                        class="form-control bg-secondary text-light border-0" placeholder="Contoh: 500000"
+                                        required>
+                                </div>
+
+                                <!-- Unit -->
+                                <div class="mb-3">
+                                    <label for="unit" class="form-label text-warning">Satuan</label>
+                                    <input type="text" name="unit" id="unit"
+                                        class="form-control bg-secondary text-light border-0" placeholder="Contoh: m³"
+                                        required>
+                                </div>
+
+                                <!-- Status -->
+                                <div class="mb-3">
+                                    <label for="status" class="form-label text-warning">Status</label>
+                                    <select name="status" id="status"
+                                        class="form-select bg-secondary text-light border-0">
+                                        <option value="draft">Draft</option>
+                                        <option value="published">Published</option>
+                                    </select>
+                                </div>
+
+                                <!-- Tombol -->
+                                <div class="modal-footer border-0">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-warning text-dark fw-bold">Tambah
+                                        Produk</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <!-- Modal Edit Produk -->
             <div class="modal fade" id="modalEditProduct" tabindex="-1" aria-labelledby="modalEditProductLabel"
                 aria-hidden="true">
@@ -105,7 +221,8 @@
                     <div class="modal-content text-dark">
                         <div class="modal-header" style="background-color: #ffb300;">
                             <h5 class="modal-title fw-bold" id="modalEditProductLabel">Edit Produk</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                         </div>
 
                         <div class="modal-body bg-dark text-light">
@@ -211,121 +328,6 @@
                 </div>
             </div>
 
-            @auth
-                @if (auth()->user()->status == 'admin')
-                    <div class="container py-5" style="background-color: #000; color: #fff;">
-                        <div class="row justify-content-center">
-                            <div class="col-md-8">
-
-                                <!-- Judul Form -->
-                                <h3 class="fw-bold text-center mb-4" style="color: #ffb300;">Tambah Produk Baru</h3>
-
-                                <form method="POST" enctype="multipart/form-data">
-                                    @csrf
-
-                                    <!-- Nama Produk -->
-                                    <div class="mb-4">
-                                        <label class="form-label fw-semibold" style="color: #ffb300;">Nama Produk</label>
-                                        <input type="text" name="name" class="form-control border-0 shadow-sm"
-                                            placeholder="Contoh: Pasir Silika"
-                                            style="background-color: #1a1a1a; color: #fff;">
-                                    </div>
-
-                                    <!-- Slug -->
-                                    <div class="mb-4">
-                                        <label class="form-label fw-semibold" style="color: #ffb300;">Slug</label>
-                                        <input type="text" name="slug" class="form-control border-0 shadow-sm"
-                                            placeholder="contoh: pasir-silika"
-                                            style="background-color: #1a1a1a; color: #fff;">
-                                        <small class="text-secondary">Slug digunakan untuk URL produk.</small>
-                                    </div>
-
-                                    <!-- Short Description -->
-                                    <div class="mb-4">
-                                        <label class="form-label fw-semibold" style="color: #ffb300;">Deskripsi
-                                            Singkat</label>
-                                        <input type="text" name="short_description"
-                                            class="form-control border-0 shadow-sm" placeholder="Ringkasan singkat produk..."
-                                            style="background-color: #1a1a1a; color: #fff;">
-                                    </div>
-
-                                    <!-- Deskripsi Lengkap -->
-                                    <div class="mb-4">
-                                        <label class="form-label fw-semibold" style="color: #ffb300;">Deskripsi
-                                            Lengkap</label>
-                                        <textarea name="description" rows="5" class="form-control border-0 shadow-sm"
-                                            placeholder="Tuliskan detail lengkap produk..." style="background-color: #1a1a1a; color: #fff;"></textarea>
-                                    </div>
-
-                                    <!-- Upload Gambar -->
-                                    <div class="mb-4">
-                                        <label class="form-label fw-semibold" style="color: #ffb300;">Gambar Produk</label>
-                                        <input type="file" name="image" class="form-control border-0 shadow-sm"
-                                            style="background-color: #1a1a1a; color: #fff;">
-                                        <small class="text-secondary">Upload gambar utama produk.</small>
-                                    </div>
-
-                                    <!-- Spesifikasi (JSON input) -->
-                                    <div class="mb-4">
-                                        <label class="form-label fw-semibold" style="color: #ffb300;">Spesifikasi</label>
-                                        <textarea name="specification" rows="3" class="form-control border-0 shadow-sm"
-                                            placeholder='Contoh: {"Kadar Silika": "99%", "Ukuran Butir": "0.1 - 2 mm"}'
-                                            style="background-color: #1a1a1a; color: #fff;"></textarea>
-                                        <small class="text-secondary">Masukkan dalam format JSON (kunci dan nilai).</small>
-                                    </div>
-
-                                    <!-- Ketersediaan -->
-                                    <div class="mb-4">
-                                        <label class="form-label fw-semibold" style="color: #ffb300;">Ketersediaan</label>
-                                        <select name="availability" class="form-select border-0 shadow-sm"
-                                            style="background-color: #1a1a1a; color: #fff;">
-                                            <option value="1">Tersedia</option>
-                                            <option value="0">Habis</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- Harga per m3 -->
-                                    <div class="mb-4">
-                                        <label class="form-label fw-semibold" style="color: #ffb300;">Harga per m³</label>
-                                        <input type="number" name="price_per_m3" class="form-control border-0 shadow-sm"
-                                            placeholder="Contoh: 500000" style="background-color: #1a1a1a; color: #fff;">
-                                    </div>
-
-                                    <!-- Unit -->
-                                    <div class="mb-4">
-                                        <label class="form-label fw-semibold" style="color: #ffb300;">Satuan</label>
-                                        <input type="text" name="unit" class="form-control border-0 shadow-sm"
-                                            placeholder="Contoh: m3" style="background-color: #1a1a1a; color: #fff;">
-                                    </div>
-
-                                    <!-- Status -->
-                                    <div class="mb-4">
-                                        <label class="form-label fw-semibold" style="color: #ffb300;">Status</label>
-                                        <select name="status" class="form-select border-0 shadow-sm"
-                                            style="background-color: #1a1a1a; color: #fff;">
-                                            <option value="draft">Draft</option>
-                                            <option value="published">Published</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- Tombol Submit -->
-                                    <div class="text-center mt-5">
-                                        <button type="submit" class="btn px-5 py-2 fw-semibold"
-                                            style="background-color: #ffb300; color: #000; border-radius: 50px;">
-                                            Simpan Produk
-                                        </button>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-
-            </div>
-            @endif
-        @endauth
 
     </section>
     <style>

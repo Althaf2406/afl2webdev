@@ -27,7 +27,10 @@ Route::delete('/galeri/delete/{id}', [GaleriController::class, 'destroy']);
 Route::get('/profile', [ProfileController::class, 'profile']);
 
 Route::get('/product', [ProductController::class, 'product']);
+
+Route::post('add.product', [ProductController::class, 'store'])->name('add.product');
 Route::put('/product/update/{id}', [ProductController::class, 'update']);
+
 Route::delete('/product/delete/{id}', [ProductController::class, 'destroy']);
 
 

@@ -32,8 +32,8 @@
                             </div>
                             <div class="col-md-8 d-flex align-items-center">
                                 <div class="card-body">
-                                    <h5 class="card-title" style="color: black">{{ $galeri->judul }}</h5>
-                                    <p class="card-text" style="color: black">{{ $galeri->deskripsi }}</p>
+                                    <h5 class="card-title">{{ $galeri->judul }}</h5>
+                                    <p class="card-text">{{ $galeri->deskripsi }}</p>
                                     @auth
                                         @if (auth()->user()->status == 'admin')
                                             <div class="row-s">

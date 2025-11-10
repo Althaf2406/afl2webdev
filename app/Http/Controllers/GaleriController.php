@@ -31,9 +31,9 @@ class GaleriController extends Controller
         return redirect('/galeri');
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Galeri $galeri)
     {
-        $galeri = Galeri::findOrFail($id);
+        
 
         $galeri->judul = $request->judul;
         $galeri->deskripsi = $request->deskripsi;
@@ -48,9 +48,8 @@ class GaleriController extends Controller
         return redirect('/galeri');
     }
 
-    public function destroy($id)
+    public function destroy(Galeri $galeri)
     {
-        $galeri = Galeri::findOrFail($id);
         
         if ($galeri->gambar && file_exists(storage_path('app/public/gambargaleri/' . $galeri->gambar))) {
             unlink(storage_path('app/public/gambargaleri/' . $galeri->gambar));

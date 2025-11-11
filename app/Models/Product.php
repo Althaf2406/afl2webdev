@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
+    public $timestamps = false;
     use HasFactory;
 
     protected $fillable = [
@@ -22,8 +23,11 @@ class Product extends Model
         'status',
     ];
 
+    public function users(){
+        return $this->belongsToMany(User::class, 'histories');
+    }
+
     protected $casts = [
-        'specification' => 'array',
         'availability' => 'boolean',
     ];
 

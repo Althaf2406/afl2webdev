@@ -24,6 +24,10 @@ class User extends Authenticatable
         'status'
     ];
 
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'histories');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

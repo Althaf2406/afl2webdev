@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\History;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,9 +17,11 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        
+        $historyList = Auth::user()->histories->get();
         return view('profile.edit', [
             'user' => $request->user(),
-        ]);
+        ], compact('historyList'));
     }
 
     /**

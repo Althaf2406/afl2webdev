@@ -56,7 +56,7 @@ class ProductController extends Controller
             'short_description' => $request->short_description,
             'description' => $request->description,
             'image' => $imagePath,
-            'specification' => $this->parseSpecification($request->specification),
+            'specification' => $request->specification,
             'availability' => $request->availability,
             'price_per_m3' => $request->price_per_m3,
             'unit' => $request->unit,
@@ -90,7 +90,7 @@ class ProductController extends Controller
         $product->slug = $request->slug ?? strtolower(str_replace(' ', '-', $request->name));
         $product->short_description = $request->short_description;
         $product->description = $request->description;
-        $product->specification = $this->parseSpecification($request->specification);
+        $product->specification = $request->specification;
         $product->availability = $request->availability;
         $product->price_per_m3 = $request->price_per_m3;
         $product->unit = $request->unit;
@@ -134,16 +134,5 @@ class ProductController extends Controller
         return redirect('/product')->with('success', 'Produk berhasil dihapus!');
     }
 
-    /**
-     * Helper untuk parsing JSON spesifikasi (jika bukan array valid).
-     */
-    private function parseSpecification($spec)
-    {
-        if (empty($spec)) {
-            return [];
-        }
-
-        $decoded = json_decode($spec, true);
-        return json_last_error() === JSON_ERROR_NONE ? $decoded : [];
-    }
+    
 }

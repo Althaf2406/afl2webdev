@@ -23,8 +23,11 @@ class Product extends Model
         'status',
     ];
 
+    public function users(){
+        return $this->belongsToMany(User::class, 'histories');
+    }
+
     protected $casts = [
-        'specification' => 'array',
         'availability' => 'boolean',
     ];
 

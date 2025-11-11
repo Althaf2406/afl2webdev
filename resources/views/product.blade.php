@@ -50,15 +50,14 @@
 
                             <!-- Spesifikasi -->
                             <ul class="list-group list-group-flush" style="background-color: #1a1a1a;">
-                                @if (is_array($pds->specification))
-                                    @foreach ($pds->specification as $key => $value)
-                                        <li class="list-group-item d-flex justify-content-between"
-                                            style="background-color: #1a1a1a; color: #fff;">
-                                            <span class="text-capitalize">{{ $key }}</span>
-                                            <span class="fw-semibold">{{ $value }}</span>
-                                        </li>
-                                    @endforeach
+                                @if (!empty($pds->specification))
+                                    <li class="list-group-item d-flex justify-content-between"
+                                        style="background-color: #1a1a1a; color: #fff;">
+                                        <span class="text-capitalize">Specification</span>
+                                        <span class="fw-semibold">{{ $pds->specification }}</span>
+                                    </li>
                                 @endif
+
                                 <li class="list-group-item d-flex justify-content-between"
                                     style="background-color: #1a1a1a; color: #fff;">
                                     <span>Ketersediaan</span>
@@ -77,10 +76,11 @@
 
                             <!-- Aksi -->
                             <div class="card-body d-flex justify-content-between">
-                                <a href="{{ url('/product' . $pds->slug) }}" class="card-link"
-                                    style="color: #ffb300;">Detail</a>
-                                <a href="{{ url('/quotation/create') . '?product=' . $pds->id }}" class="card-link"
-                                    style="color: #00c853;">Pesan Sekarang</a>
+                                <button type="button" class="btn " style=" background-color: #ffb300; color: #000;"
+                                    data-bs-toggle="modal" data-bs-target="#modalOrderProduct" data-id="{{ $pds->id }}"
+                                    data-name="{{ $pds->name }}">
+                                    Pesan Sekarang
+                                </button>
                             </div>
 
                             <!-- Edit dan Hapus (Admin) -->
@@ -253,8 +253,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="edit_specification" class="form-label">Specification (JSON atau
-                                        teks)</label>
+                                    <label for="edit_specification" class="form-label">Specification </label>
                                     <textarea id="edit_specification" name="specification" class="form-control"></textarea>
                                 </div>
 
@@ -328,6 +327,66 @@
                 </div>
             </div>
 
+            <!-- Modal Pemesanan Produk -->
+            <div class="modal fade" id="modalOrderProduct" tabindex="-1" aria-labelledby="modalOrderProductLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content text-dark">
+                        <div class="modal-header" style="background-color: #ffb300;">
+                            <h5 class="modal-title fw-bold" id="modalOrderProductLabel">Pesan Produk</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body bg-dark text-light">
+                            <form id="formOrderProduct" method="POST" enctype="multipart/form-data">
+                                @csrf
+
+                                <input type="hidden" id="order_product_id" name="product_id">
+
+                                <div class="mb-3">
+                                    <label for="order_product_name" class="form-label">Nama Produk</label>
+                                    <input type="text" id="order_product_name" name="nama_produk"
+                                        class="form-control" readonly>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="order_quantity" class="form-label">Jumlah Pembelian (m³)</label>
+                                    <input type="number" step="0.01" id="order_quantity" name="jumlah_pembelian"
+                                        class="form-control" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="order_address" class="form-label">Alamat Pengiriman</label>
+                                    <textarea id="order_address" name="alamat_pengiriman" class="form-control" rows="3"
+                                        placeholder="Tulis alamat lengkap pengiriman" required></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="order_notes" class="form-label">Catatan Tambahan (opsional)</label>
+                                    <textarea id="order_notes" name="catatan" class="form-control" rows="2"
+                                        placeholder="Misalnya: pengiriman siang hari"></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="order_payment_proof" class="form-label">Upload Bukti Pembayaran</label>
+                                    <input type="file" id="order_payment_proof" name="bukti_bayar"
+                                        class="form-control" accept="image/*,.pdf" required>
+                                    <small class="text-warning">Transfer ke No Rekening .......</small>
+                                </div>
+
+
+                                <div class="modal-footer border-0">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-primary">Kirim Pesanan</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
     </section>
     <style>
@@ -372,8 +431,6 @@
             if (editModal && editForm) {
                 editModal.addEventListener('show.bs.modal', function(event) {
                     const button = event.relatedTarget;
-
-                    // Ambil data dari tombol edit
                     const id = button.getAttribute('data-id');
                     const name = button.getAttribute('data-name');
                     const shortDesc = button.getAttribute('data-short_description');
@@ -382,10 +439,7 @@
                     const unit = button.getAttribute('data-unit');
                     const avail = button.getAttribute('data-availability');
 
-                    // Set action URL
                     editForm.action = `/product/update/${id}`;
-
-                    // Isi form fields
                     document.getElementById('edit_id').value = id;
                     document.getElementById('edit_name').value = name;
                     document.getElementById('edit_short_description').value = shortDesc;
@@ -393,6 +447,24 @@
                     document.getElementById('edit_price_per_m3').value = price;
                     document.getElementById('edit_unit').value = unit;
                     document.getElementById('edit_availability').value = avail;
+                });
+            }
+
+            // === Modal Pemesanan Produk ===
+            const orderModal = document.getElementById('modalOrderProduct');
+            const orderForm = document.getElementById('formOrderProduct');
+
+            if (orderModal && orderForm) {
+                orderModal.addEventListener('show.bs.modal', function(event) {
+                    const button = event.relatedTarget;
+                    const productId = button.getAttribute('data-id');
+                    const productName = button.getAttribute('data-name');
+
+                    document.getElementById('order_product_id').value = productId;
+                    document.getElementById('order_product_name').value = productName;
+
+                    // ✅ arahkan ke route yang benar
+                    orderForm.action = `/product/order/${productId}`;
                 });
             }
 

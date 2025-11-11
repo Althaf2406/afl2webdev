@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\HistoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
@@ -11,7 +12,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->middleware('admin');
 Route::get('/index', [HomeController::class, 'index']);
 
 Route::get('/product', [ProductController::class, 'product']);
@@ -22,9 +23,17 @@ Route::post('add.gallery', [GaleriController::class, 'store'])->name('add.galler
 
 Route::put('/galeri/update/{galeri}', [GaleriController::class, 'update'])->middleware('admin');
 
-Route::delete('/galeri/delete/{galeri}', [GaleriController::class, 'destroy'])->middleware('admin');
+Route::delete(' /galeri/delete/{galeri}', [GaleriController::class, 'destroy'])->middleware('admin');
 
-Route::get('/company-partner', [PartnerController::class, 'adminPage'])->middleware('admin');
+// Route::get('/company-partner', [PartnerController::class, 'adminPage'])->middleware('admin');
+Route::get('/product', [ProductController::class, 'product']);
+
+Route::post('add.product', [ProductController::class, 'store'])->name('add.product')->middleware('admin');
+Route::put('/product/update/{id}', [ProductController::class, 'update'])->middleware('admin');
+
+Route::delete('/product/delete/{id}', [ProductController::class, 'destroy'])->middleware('admin');
+
+Route::post('/product/order/{history}', [HistoryController::class, 'storeOrder'])->middleware('auth');
 
 Route::get('/product', [ProductController::class, 'product']);
 
@@ -42,4 +51,5 @@ Route::middleware('auth')->group(function () {
 });
 
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';

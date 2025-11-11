@@ -11,17 +11,19 @@
                background-size: cover;
                background-position: center;
                background-repeat: no-repeat;">
-        <div class="w-full md:w-1/2 text-center md:text-left text-white">
-            <div
-                class="main-text font-bold leading-tight 
-                  text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-wide">
-                GROWING BEYOND
-            </div>
-            <div
-                class="highlight text-yellow-400 font-extrabold 
-                  text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-wider mb-4">
-                EXPECTATION
-            </div>
+        <div class="flex flex-col items-center md:items-start text-center md:text-left">
+        <!-- GROWING BEYOND -->
+        <h1 class="text-white font-extrabold tracking-wider leading-tight 
+                    text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl drop-shadow-[0_4px_8px_rgba(0,0,0,0.25)]">
+            GROWING BEYOND
+        </h1>
+
+        <!-- EXPECTATION -->
+        <div class="bg-red-600 mt-2 px-6 py-2 inline-block">
+            <h2 class="text-white font-extrabold tracking-wider leading-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
+            EXPECTATION
+            </h2>
+        </div>
         </div>
     </section>
 
@@ -42,17 +44,17 @@
                         class="img-fluid rounded-3 shadow" style="max-height: 400px; object-fit: cover; width: 100%;">
                 </div>
 
-                <!-- Teks Singkat -->
-                <div class="col-lg-6 col-md-12 text-white">
-                    <h2 class="fw-bold mb-3">Company Overview</h2>
-                    <p class="text-white-50 mb-4">
-                        Mengenal lebih dekat tentang <strong>Tambang Pasir Jambi</strong> — perusahaan yang berkomitmen
-                        untuk menyediakan pasir berkualitas tinggi dan berkelanjutan di wilayah Jambi.
-                    </p>
-                    <a href="#companyStats" class="btn btn-light fw-semibold px-4 py-2 rounded-pill">Lihat Selengkapnya</a>
+                    <div class="col-lg-6 col-md-12 text-white mb-4 mb-lg-0">
+                        <h2 class="fw-bold mb-3 fs-1">Company Overview</h2>
+                        <p class="text-white-50 mb-4 fs-5">
+                            Mengenal lebih dekat tentang <strong>Tambang Pasir Jambi</strong> — perusahaan yang berkomitmen
+                            untuk menyediakan pasir berkualitas tinggi dan berkelanjutan di wilayah Jambi.
+                        </p>
+                        <a href="#companyStats" class="btn btn-light fw-semibold px-4 py-2 rounded-pill">
+                            Lihat Selengkapnya
+                        </a>
                 </div>
-            </div>
-
+                
             <!-- Garis Pembatas -->
             <hr style="height: 3px; background-color: #ffffff; opacity: 0.5; border: none; border-radius: 2px;">
 
@@ -129,7 +131,7 @@
 
         <!-- Company Partner -->
         <section id="partnerCarousel" class="carousel slide bg-white" data-bs-ride="carousel">
-            @auth
+            {{-- @auth
                 @if (auth()->user()->status == 'admin')
                     <div class="d-flex justify-content-center">
                         <a href="/company-partner" class="btn btn-primary">
@@ -139,7 +141,7 @@
                 @else
                     <h2 class="text-center text-black">Our Partner</h2>
                 @endif
-            @endauth
+            @endauth --}}
             @guest
                 <h2 class="text-center text-black">Our Partner</h2>
             @endguest

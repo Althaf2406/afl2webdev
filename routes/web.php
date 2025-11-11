@@ -35,6 +35,15 @@ Route::delete('/product/delete/{id}', [ProductController::class, 'destroy'])->mi
 
 Route::post('/product/order/{history}', [HistoryController::class, 'storeOrder'])->middleware('auth');
 
+Route::get('/product', [ProductController::class, 'product']);
+
+Route::post('add.product', [ProductController::class, 'store'])->name('add.product');
+Route::put('/product/update/{id}', [ProductController::class, 'update']);
+
+Route::delete('/product/delete/{id}', [ProductController::class, 'destroy']);
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
